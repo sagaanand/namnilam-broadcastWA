@@ -27,7 +27,7 @@ export const WhatsAppAIForBusinessPage: React.FC = () => {
               If your customers already contact you on WhatsApp, AI can help you handle those conversations faster and more consistently.
             </p>
             <p className="text-base text-slate-600 leading-relaxed">
-              Instead of losing potential deals because messages went unanswered while you were in meetings or on site, Nam Nilam WhatsApp AI keeps every customer engaged with accurate information and prompt answers.
+              Instead of losing potential deals because messages went unanswered while you were in meetings or on site, VYJOY AI keeps every customer engaged with accurate information and prompt answers.
             </p>
           </div>
         </div>
@@ -49,7 +49,7 @@ export const WhatsAppAIForBusinessPage: React.FC = () => {
               </div>
             </div>
             <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
-              When prospective clients text your business, their interest is highest in the first few minutes. Nam Nilam WhatsApp AI responds within 5 seconds, answering pricing queries, providing catalog links, and confirming availability immediately.
+              When prospective clients text your business, their interest is highest in the first few minutes. VYJOY AI responds within 5 seconds, answering pricing queries, providing catalog links, and confirming availability immediately.
             </p>
             <div className="bg-palegreen-50/60 rounded-2xl p-4 border border-palegreen-100 text-xs sm:text-sm text-slate-700 space-y-1">
               <span className="font-bold text-namnilam-950 block">Practical Example:</span>
@@ -71,7 +71,7 @@ export const WhatsAppAIForBusinessPage: React.FC = () => {
               </div>
             </div>
             <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
-              Up to 70% of business WhatsApp messages ask the same repetitive questions: <em>"Where is your office located?"</em>, <em>"Can you share brochure?"</em>, or <em>"Is this in stock?"</em>. Nam Nilam WhatsApp AI handles all of these simultaneously without getting tired.
+              Up to 70% of business WhatsApp messages ask the same repetitive questions: <em>"Where is your office located?"</em>, <em>"Can you share brochure?"</em>, or <em>"Is this in stock?"</em>. VYJOY AI handles all of these simultaneously without getting tired.
             </p>
             <div className="bg-palegreen-50/60 rounded-2xl p-4 border border-palegreen-100 text-xs sm:text-sm text-slate-700 space-y-1">
               <span className="font-bold text-namnilam-950 block">Practical Example:</span>
@@ -93,7 +93,7 @@ export const WhatsAppAIForBusinessPage: React.FC = () => {
               </div>
             </div>
             <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
-              Most sales happen during follow-up, but busy business owners rarely have time to chase every enquiry. Nam Nilam WhatsApp AI continues the dialogue politely, asking if the customer reviewed the information and offering next steps.
+              Most sales happen during follow-up, but busy business owners rarely have time to chase every enquiry. VYJOY AI continues the dialogue politely, asking if the customer reviewed the information and offering next steps.
             </p>
             <div className="bg-palegreen-50/60 rounded-2xl p-4 border border-palegreen-100 text-xs sm:text-sm text-slate-700 space-y-1">
               <span className="font-bold text-namnilam-950 block">Practical Example:</span>
@@ -167,7 +167,7 @@ export const WhatsAppAIForBusinessPage: React.FC = () => {
               className="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl bg-namnilam-900 hover:bg-namnilam-950 text-white font-bold text-base shadow-md hover:shadow-lg ring-1 ring-gold-400/50 hover:ring-gold-400 transition-all active:scale-95 group"
             >
               <Sparkles className="w-5 h-5 text-gold-300 group-hover:rotate-12 transition-transform" />
-              <span>Chat with Nam Nilam AI →</span>
+              <span>Chat with VYJOY AI →</span>
             </a>
           </div>
         </div>

@@ -10,6 +10,8 @@ import {
   Automation,
   Template,
   Broadcast,
+  BroadcastRecipient,
+  ActiveBroadcastInfo,
   AISettings,
   ToastNotification,
   Note,
@@ -62,7 +64,21 @@ interface WorkspaceContextType {
 
   // Broadcasts
   broadcasts: Broadcast[];
+  activeBroadcast: ActiveBroadcastInfo | null;
   createBroadcast: (name: string, templateId: string, recipientCount: number) => void;
+  startRealBroadcast: (data: {
+    name: string;
+    template: string;
+    recipients: BroadcastRecipient[];
+    delaySecondsMin: number;
+    delaySecondsMax: number;
+    simulateTyping: boolean;
+    batchSize: number;
+    batchPauseSeconds: number;
+  }) => Promise<boolean>;
+  pauseBroadcast: (id: string) => Promise<void>;
+  resumeBroadcast: (id: string) => Promise<void>;
+  cancelBroadcast: (id: string) => Promise<void>;
 
   // AI Settings
   aiSettings: AISettings;
@@ -85,6 +101,7 @@ export const WorkspaceProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const KEY_AUTOMATIONS = `${KEY_PREFIX}automations`;
   const KEY_TEMPLATES = `${KEY_PREFIX}templates`;
   const KEY_AI_SETTINGS = `${KEY_PREFIX}ai_settings`;
+  const KEY_CONTACTS = `${KEY_PREFIX}contacts`;
 
   // 1. Toast Notifications State
   const [toasts, setToasts] = useState<ToastNotification[]>([]);
@@ -116,7 +133,39 @@ export const WorkspaceProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const [messagesMap, setMessagesMap] = useState<Record<string, ChatMessage[]>>({});
 
   // 4. Contacts State
-  const [contacts, setContacts] = useState<Contact[]>([]);
+  const [contacts, setContacts] = useState<Contact[]>(() => {
+    const saved = localStorage.getItem(KEY_CONTACTS);
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch (e) {}
+    }
+    return [];
+  });
+
+  // Sync contacts from backend on mount
+  useEffect(() => {
+    fetch('/api/contacts')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success && Array.isArray(data.contacts) && data.contacts.length > 0) {
+          setContacts(data.contacts);
+          try {
+            localStorage.setItem(KEY_CONTACTS, JSON.stringify(data.contacts));
+          } catch (e) {}
+        }
+      })
+      .catch(() => {});
+  }, [KEY_CONTACTS]);
+
+  // Keep contacts persisted to localStorage
+  useEffect(() => {
+    if (contacts.length > 0) {
+      try {
+        localStorage.setItem(KEY_CONTACTS, JSON.stringify(contacts));
+      } catch (e) {}
+    }
+  }, [contacts, KEY_CONTACTS]);
 
   // 5. AI Settings State
   const [aiSettings, setAiSettings] = useState<AISettings>(() => {
@@ -151,26 +200,47 @@ export const WorkspaceProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     }
     return {
       workspaceId,
-      businessName: workspace?.name || 'Nam Nilam Realty',
-      description: 'DTCP & RERA approved residential plots and villa projects.',
-      location: 'Tamil Nadu',
-      contactDetails: '+91 97876 00221 | info@namnilam.com',
+      businessName: workspace?.name || 'VYJOY International Tourism & Consultancy',
+      description: 'Government-compliant overseas manpower recruitment, visa processing, international tourism, and document attestation consultancy based in Trichy, Tamil Nadu.',
+      location: 'Trichy, Tamil Nadu, India',
+      contactDetails: '+91 98424 00000 | info@vyjoyconsultancy.com',
       instructions:
-        'Politely answer customer questions about project details, plot availability, and pricing starting from ₹18.5 Lakhs. Offer free weekend site visits.',
+        'Politely and professionally assist clients with overseas job recruitment, work visas, tourist and visit visas (Dubai, Singapore, Malaysia, Schengen, UK, Thailand), international holiday tour packages, passport assistance, and document attestation. Provide guidance in English, Tamil, and Tanglish. Recommend scheduling an in-person consultation at our Trichy head office or submitting documents online for review.',
       products: [
         {
           id: 'prod_1',
-          name: 'Abirami Nagar Residential Plots',
-          description: '1200 - 2400 sq.ft DTCP approved clear title plots with 40ft blacktop roads.',
-          price: 'Starting from ₹18.5 Lakhs (₹1,540 / sq.ft)',
-          availability: '14 plots available',
+          name: 'Overseas Job Recruitment & Manpower Placement',
+          description: 'Recruitment services for skilled, semi-skilled, and technical roles across Gulf, Singapore, Malaysia, and Europe.',
+          price: 'Free consultation & profile evaluation',
+          availability: 'Actively recruiting for multiple vacancies',
+        },
+        {
+          id: 'prod_2',
+          name: 'Tourist & Visit Visa Processing',
+          description: 'Fast-track tourist, visit, and business visas for Dubai (30/60 days), Singapore, Malaysia, Thailand, Bali, Schengen, and UK.',
+          price: 'Starting from ₹5,500',
+          availability: 'All countries open for application',
+        },
+        {
+          id: 'prod_3',
+          name: 'International & Domestic Tour Packages',
+          description: 'Curated holiday and group tours covering flights, star hotels, airport transfers, and guided sightseeing.',
+          price: 'International packages starting from ₹28,000 per person',
+          availability: 'Year-round bookings open',
+        },
+        {
+          id: 'prod_4',
+          name: 'Passport Services & Certificate Attestation',
+          description: 'Fresh passport application, Tatkal passport, renewal, MEA Apostille, HRD attestation, and Embassy legalization.',
+          price: 'Affordable standard processing charges',
+          availability: 'Daily appointments available',
         },
       ],
       faqs: [
         {
           id: 'faq_1',
-          question: 'Are bank loans available?',
-          answer: 'Yes, up to 80% bank loan approval is ready with SBI, HDFC, and Indian Bank.',
+          question: 'What services does VYJOY Consultancy offer?',
+          answer: 'VYJOY Consultancy specializes in Overseas Job Recruitment & Work Permits, Tourist & Visit Visas, Tour Packages, Passport Assistance, and MEA/Embassy Certificate Attestation.',
         },
       ],
     };
@@ -192,18 +262,23 @@ export const WorkspaceProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         if (!isMounted) return;
 
         setWhatsAppAccount((prev) => {
-          if (
-            prev.status === data.status &&
-            prev.phoneNumber === (data.phoneNumber || '') &&
-            prev.qrCode === data.qr
-          ) {
+          // Normalize qr: treat null and undefined as the same (no QR)
+          const incomingQr = data.qr || undefined;
+          const sameStatus = prev.status === data.status;
+          const samePhone = prev.phoneNumber === (data.phoneNumber || '');
+          const sameQr = prev.qrCode === incomingQr;
+
+          // Force-update if backend says connected but we think disconnected
+          const forceUpdate = data.status === 'connected' && prev.status !== 'connected';
+
+          if (sameStatus && samePhone && sameQr && !forceUpdate) {
             return prev;
           }
           return {
             ...prev,
             status: data.status,
             phoneNumber: data.phoneNumber || prev.phoneNumber || '',
-            qrCode: data.qr || undefined,
+            qrCode: incomingQr,
             connectedAt: data.status === 'connected' ? (prev.connectedAt || new Date().toISOString()) : undefined,
           };
         });
@@ -601,9 +676,18 @@ export const WorkspaceProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       {
         id: 'auto_1',
         workspaceId,
-        name: 'New Lead Welcome',
-        trigger: 'New customer message received',
-        action: 'Send instant personalized welcome and share project overview',
+        name: 'Overseas Vacancy Follow-up',
+        trigger: 'New candidate message received',
+        action: 'Send instant personalized welcome and request CV + Passport copy',
+        status: 'Active',
+        executionsCount: 0,
+      },
+      {
+        id: 'auto_2',
+        workspaceId,
+        name: 'Visa Requirements Checklist',
+        trigger: 'Keyword: visa, tourist, visit',
+        action: 'Share required documents checklist and fee breakdown',
         status: 'Active',
         executionsCount: 0,
       },
@@ -647,9 +731,27 @@ export const WorkspaceProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       {
         id: 'tmpl_1',
         workspaceId,
-        name: 'New Enquiry Welcome',
+        name: 'Overseas Vacancies Alert',
+        category: 'General',
+        content: '{Vanakkam|Hello} {{name}}! Active job vacancies available in Gulf & Singapore for technical, hospitality and construction roles. Reply with your trade or CV to check eligibility.',
+        variables: ['name'],
+        lastModified: 'Today',
+      },
+      {
+        id: 'tmpl_2',
+        workspaceId,
+        name: 'Tourist Visa Special Offer',
+        category: 'Follow-up',
+        content: '{Hello|Dear} {{name}}, planning your holiday? Fast-track tourist visas for Dubai (30/60 days), Singapore & Malaysia with fast approval at VYJOY Consultancy (Trichy). Reply for full checklist.',
+        variables: ['name'],
+        lastModified: 'Today',
+      },
+      {
+        id: 'tmpl_3',
+        workspaceId,
+        name: 'Office Consultation Invite',
         category: 'Welcome',
-        content: 'Hi {{name}}, thanks for contacting Nam Nilam. How can we help you today?',
+        content: 'Hi {{name}}, visit our Trichy office (Cantonment / Thillai Nagar) for direct counseling and document verification. Reply to book your appointment slot.',
         variables: ['name'],
         lastModified: 'Today',
       },
@@ -688,8 +790,104 @@ export const WorkspaceProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     setTemplates((prev) => prev.filter((t) => t.id !== id));
   };
 
-  // Broadcasts
+  // Real Broadcasts Engine State
   const [broadcasts, setBroadcasts] = useState<Broadcast[]>([]);
+  const [activeBroadcast, setActiveBroadcast] = useState<ActiveBroadcastInfo | null>(null);
+
+  // Poll Broadcast status
+  useEffect(() => {
+    let isMounted = true;
+    const syncBroadcasts = async () => {
+      try {
+        const res = await fetch('/api/broadcasts/status');
+        if (!res.ok) return;
+        const data = await res.json();
+        if (!isMounted) return;
+        setActiveBroadcast(data.active || null);
+        if (Array.isArray(data.history)) {
+          setBroadcasts(
+            data.history.map((h: any) => ({
+              id: h.id,
+              workspaceId,
+              name: h.name,
+              templateId: 'custom',
+              templateName: h.template ? h.template.substring(0, 30) + '...' : 'Custom Broadcast',
+              recipientCount: h.totalCount || h.recipients?.length || 0,
+              sentCount: h.sentCount || 0,
+              deliveredCount: h.sentCount || 0,
+              repliesCount: 0,
+              status: h.status === 'completed' ? ('Sent' as const) : h.status,
+              createdAt: h.createdAt || 'Recent',
+            }))
+          );
+        }
+      } catch (e) {}
+    };
+
+    syncBroadcasts();
+    const interval = setInterval(syncBroadcasts, 2000);
+    return () => {
+      isMounted = false;
+      clearInterval(interval);
+    };
+  }, [workspaceId]);
+
+  const startRealBroadcast = async (data: {
+    name: string;
+    template: string;
+    recipients: BroadcastRecipient[];
+    delaySecondsMin: number;
+    delaySecondsMax: number;
+    simulateTyping: boolean;
+    batchSize: number;
+    batchPauseSeconds: number;
+  }): Promise<boolean> => {
+    try {
+      const res = await fetch('/api/broadcasts/start', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      const json = await res.json();
+      if (!res.ok) {
+        addToast('error', json.error || 'Failed to start broadcast.');
+        return false;
+      }
+      setActiveBroadcast(json.broadcast);
+      addToast('success', `Safe Anti-Ban Broadcast "${data.name}" launched!`);
+      return true;
+    } catch (err: any) {
+      addToast('error', err.message || 'Error starting broadcast.');
+      return false;
+    }
+  };
+
+  const pauseBroadcast = async (id: string) => {
+    try {
+      const res = await fetch(`/api/broadcasts/${encodeURIComponent(id)}/pause`, { method: 'POST' });
+      const json = await res.json();
+      if (json.active) setActiveBroadcast(json.active);
+      addToast('warning', 'Broadcast campaign paused.');
+    } catch (e) {}
+  };
+
+  const resumeBroadcast = async (id: string) => {
+    try {
+      const res = await fetch(`/api/broadcasts/${encodeURIComponent(id)}/resume`, { method: 'POST' });
+      const json = await res.json();
+      if (json.active) setActiveBroadcast(json.active);
+      addToast('success', 'Broadcast campaign resumed.');
+    } catch (e) {}
+  };
+
+  const cancelBroadcast = async (id: string) => {
+    try {
+      const res = await fetch(`/api/broadcasts/${encodeURIComponent(id)}/cancel`, { method: 'POST' });
+      const json = await res.json();
+      if (json.active) setActiveBroadcast(json.active);
+      addToast('info', 'Broadcast campaign stopped.');
+    } catch (e) {}
+  };
 
   const createBroadcast = (name: string, templateId: string, recipientCount: number) => {
     const tmpl = templates.find((t) => t.id === templateId);
@@ -707,7 +905,7 @@ export const WorkspaceProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       createdAt: 'Just now',
     };
     setBroadcasts((prev) => [newBroadcast, ...prev]);
-    addToast('success', `Broadcast campaign "${name}" initiated.`);
+    addToast('success', `Broadcast campaign "${name}" recorded.`);
   };
 
   return (
@@ -746,7 +944,12 @@ export const WorkspaceProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         updateTemplate,
         deleteTemplate,
         broadcasts,
+        activeBroadcast,
         createBroadcast,
+        startRealBroadcast,
+        pauseBroadcast,
+        resumeBroadcast,
+        cancelBroadcast,
         aiSettings,
         updateAiSettings,
         toasts,

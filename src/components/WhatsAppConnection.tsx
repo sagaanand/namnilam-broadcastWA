@@ -36,7 +36,7 @@ export const WhatsAppConnection: React.FC<WhatsAppConnectionProps> = ({ onConnec
           {/* Card Header */}
           <div className="flex items-center justify-between border-b border-palegreen-100 pb-4 mb-6">
             <div className="flex items-center gap-2">
-              <img src="/nam-nilam-logo.png" alt="Nam Nilam" className="w-6 h-6 object-contain rounded-full" />
+              <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-gradient-to-br from-sky-500 to-blue-700 text-white font-black text-[9px] leading-none shrink-0">VJ</span>
               <h3 className="text-lg font-bold text-slate-900">
                 Connect WhatsApp
               </h3>
@@ -47,7 +47,7 @@ export const WhatsAppConnection: React.FC<WhatsAppConnectionProps> = ({ onConnec
             </span>
           </div>
 
-          {/* QR Code Illustration with Nam Nilam Gold & Forest Accent */}
+          {/* QR Code Illustration with VYJOY AI Gold & Forest Accent */}
           <div className="relative p-4 rounded-2xl bg-white border border-palegreen-200 shadow-2xs inline-block mb-6 cursor-pointer group" onClick={onConnectClick}>
             <svg
               className="w-48 h-48 text-slate-900"

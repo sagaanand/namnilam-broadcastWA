@@ -52,7 +52,7 @@ export const TemplatesPage: React.FC = () => {
   return (
     <>
       <SEOHead
-        title="Templates | Nam Nilam AI Workspace"
+        title="Templates | VYJOY AI Workspace"
         description="Manage standard WhatsApp message templates with dynamic customer placeholders."
         canonicalUrl="https://wa.namnilam.com/app/templates"
       />

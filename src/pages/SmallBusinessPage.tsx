@@ -24,7 +24,7 @@ export const SmallBusinessPage: React.FC = () => {
 
           <div className="bg-white rounded-3xl p-6 sm:p-8 border border-palegreen-200/90 shadow-card text-left space-y-3">
             <p className="text-lg sm:text-xl text-slate-800 leading-relaxed font-medium">
-              Small businesses and local business owners often juggle serving existing clients while fielding a stream of WhatsApp messages from new leads. Nam Nilam WhatsApp AI lets you provide prompt, professional customer communication without needing to hire a full-time support team.
+              Small businesses and local business owners often juggle serving existing clients while fielding a stream of WhatsApp messages from new leads. VYJOY AI lets you provide prompt, professional customer communication without needing to hire a full-time support team.
             </p>
             <p className="text-base text-slate-600 leading-relaxed">
               Whether you run a consulting firm, clinic, local agency, or retail service, AI handles routine questions, shares prices, and keeps leads engaged while you focus on doing the work.
@@ -97,7 +97,7 @@ export const SmallBusinessPage: React.FC = () => {
             <span>You Always Stay in Charge</span>
           </div>
           <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
-            As a small business owner, your personal relationship with clients matters. Nam Nilam WhatsApp AI does not replace you — it assists you. You can see all messages on your phone at any time and take over the conversation whenever you want to reply personally.
+            As a small business owner, your personal relationship with clients matters. VYJOY AI does not replace you — it assists you. You can see all messages on your phone at any time and take over the conversation whenever you want to reply personally.
           </p>
         </div>
 
@@ -111,7 +111,7 @@ export const SmallBusinessPage: React.FC = () => {
             Grow your business without growing your workload
           </h2>
           <p className="text-slate-600 text-sm sm:text-base max-w-lg mx-auto">
-            Chat with Nam Nilam AI on WhatsApp ({WHATSAPP_NUMBER}) and see how easily you can connect your existing WhatsApp.
+            Chat with VYJOY AI on WhatsApp ({WHATSAPP_NUMBER}) and see how easily you can connect your existing WhatsApp.
           </p>
           <div className="pt-2">
             <a
@@ -121,7 +121,7 @@ export const SmallBusinessPage: React.FC = () => {
               className="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl bg-namnilam-900 hover:bg-namnilam-950 text-white font-bold text-base shadow-md hover:shadow-lg ring-1 ring-gold-400/50 hover:ring-gold-400 transition-all active:scale-95 group"
             >
               <Sparkles className="w-5 h-5 text-gold-300 group-hover:rotate-12 transition-transform" />
-              <span>Chat with Nam Nilam AI →</span>
+              <span>Chat with VYJOY AI →</span>
             </a>
           </div>
         </div>

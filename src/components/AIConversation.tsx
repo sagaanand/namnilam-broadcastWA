@@ -40,7 +40,7 @@ export const AIConversation: React.FC = () => {
               </div>
             </div>
             <div className="flex items-center gap-1.5">
-              <img src="/nam-nilam-logo.png" alt="" className="w-5 h-5 object-contain rounded-full" />
+              <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-gradient-to-br from-sky-500 to-blue-700 text-white font-black text-[8px] leading-none shrink-0">VJ</span>
               <span className="text-[11px] font-semibold text-namnilam-900 bg-palegreen-50 px-2.5 py-0.5 rounded-full border border-palegreen-200">
                 AI Active
               </span>

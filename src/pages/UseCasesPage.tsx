@@ -71,7 +71,7 @@ export const UseCasesPage: React.FC = () => {
 
           <div className="bg-white rounded-3xl p-6 sm:p-8 border border-palegreen-200/90 shadow-card text-left space-y-3">
             <p className="text-lg sm:text-xl text-slate-800 leading-relaxed font-medium">
-              Businesses use Nam Nilam WhatsApp AI across every stage of the customer journey, from first contact and product inquiries to lead qualification, appointment booking, and customer support.
+              Businesses use VYJOY AI across every stage of the customer journey, from first contact and product inquiries to lead qualification, appointment booking, and customer support.
             </p>
             <p className="text-base text-slate-600 leading-relaxed">
               Explore the 8 primary use cases below to see how automated WhatsApp conversations can save your team hours every day.
@@ -158,7 +158,7 @@ export const UseCasesPage: React.FC = () => {
             Have a specific use case in mind?
           </h2>
           <p className="text-slate-600 text-sm sm:text-base max-w-lg mx-auto">
-            Chat with Nam Nilam AI on WhatsApp ({WHATSAPP_NUMBER}) to see how it can handle your daily customer conversations.
+            Chat with VYJOY AI on WhatsApp ({WHATSAPP_NUMBER}) to see how it can handle your daily customer conversations.
           </p>
           <div className="pt-2">
             <a
@@ -168,7 +168,7 @@ export const UseCasesPage: React.FC = () => {
               className="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl bg-namnilam-900 hover:bg-namnilam-950 text-white font-bold text-base shadow-md hover:shadow-lg ring-1 ring-gold-400/50 hover:ring-gold-400 transition-all active:scale-95 group"
             >
               <Sparkles className="w-5 h-5 text-gold-300 group-hover:rotate-12 transition-transform" />
-              <span>Chat with Nam Nilam AI →</span>
+              <span>Chat with VYJOY AI →</span>
             </a>
           </div>
         </div>

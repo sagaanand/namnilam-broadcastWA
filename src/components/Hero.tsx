@@ -26,11 +26,11 @@ export const Hero: React.FC<HeroProps> = () => {
               transition={{ duration: 0.5 }}
               className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/80 border border-gold-300/80 text-namnilam-900 text-xs font-bold uppercase tracking-wider shadow-2xs"
             >
-              <img src="/nam-nilam-logo.png" alt="" className="w-4 h-4 object-contain rounded-full" />
-              <span>Nam Nilam WhatsApp AI</span>
+              <span className="inline-flex items-center justify-center w-4 h-4 rounded-full bg-gradient-to-br from-sky-500 to-blue-700 text-white font-black text-[7px] leading-none shrink-0">VJ</span>
+              <span>VYJOY AI</span>
             </motion.div>
 
-            {/* Main Headline with Nam Nilam Forest & Gold Gradient */}
+            {/* Main Headline with VYJOY AI Forest & Gold Gradient */}
             <motion.h1
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
@@ -50,7 +50,7 @@ export const Hero: React.FC<HeroProps> = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-lg sm:text-xl text-slate-700 font-normal leading-relaxed max-w-xl"
             >
-              Nam Nilam WhatsApp AI helps businesses use AI to answer customer messages, handle enquiries and follow up with leads on WhatsApp. Connect your WhatsApp and let your AI assistant keep conversations moving 24/7.
+              VYJOY AI helps businesses use AI to answer customer messages, handle enquiries and follow up with leads on WhatsApp. Connect your WhatsApp and let your AI assistant keep conversations moving 24/7.
             </motion.p>
 
             {/* Primary CTA Block with Pale Green & Gold Theme */}
@@ -89,7 +89,7 @@ export const Hero: React.FC<HeroProps> = () => {
                     className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-2xl bg-namnilam-900 hover:bg-namnilam-950 text-white font-bold text-sm sm:text-base shadow-md hover:shadow-lg ring-1 ring-gold-400/50 hover:ring-gold-400 transition-all active:scale-95 group"
                   >
                     <Sparkles className="w-5 h-5 text-gold-300 group-hover:rotate-12 transition-transform" />
-                    <span>Chat with Nam Nilam AI →</span>
+                    <span>Chat with VYJOY AI →</span>
                   </a>
                   <a
                     href="/how-it-works"
@@ -116,19 +116,17 @@ export const Hero: React.FC<HeroProps> = () => {
           >
             {/* Phone/WhatsApp Chat Container */}
             <div className="bg-white rounded-3xl border border-palegreen-200/90 shadow-card p-4 sm:p-5 relative ring-1 ring-gold-300/30">
-              {/* WhatsApp Header with Nam Nilam Official Logo */}
+              {/* WhatsApp Header with VYJOY AI Official Logo */}
               <div className="bg-[#075E54] text-white rounded-2xl px-4 py-3 mb-4 flex items-center justify-between shadow-xs">
                 <div className="flex items-center gap-3">
                   <div className="relative">
-                    <img
-                      src="/nam-nilam-logo.png"
-                      alt="Nam Nilam AI"
-                      className="w-10 h-10 rounded-full bg-white p-0.5 object-contain ring-2 ring-gold-400/60"
-                    />
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-sky-500 to-blue-700 flex items-center justify-center ring-2 ring-white/40">
+                      <span className="text-white font-black text-sm">VJ</span>
+                    </div>
                   </div>
                   <div>
                     <h3 className="text-sm font-bold leading-tight flex items-center gap-1.5">
-                      <span>Nam Nilam AI</span>
+                      <span>VYJOY AI</span>
                       <span className="text-[10px] text-gold-300 bg-emerald-950/60 px-1.5 py-0.2 rounded font-mono">
                         OFFICIAL
                       </span>

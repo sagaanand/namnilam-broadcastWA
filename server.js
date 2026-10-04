@@ -7,6 +7,7 @@ import makeWASocket, {
   DisconnectReason,
   useMultiFileAuthState,
   fetchLatestBaileysVersion,
+  Browsers,
 } from '@whiskeysockets/baileys';
 import pino from 'pino';
 import QRCode from 'qrcode';
@@ -37,6 +38,8 @@ let connectedUser = null;
 const CHATS_FILE = path.join(__dirname, 'chats_store.json');
 const MSGS_FILE = path.join(__dirname, 'msgs_store.json');
 const AI_SETTINGS_FILE = path.join(__dirname, 'ai_settings.json');
+const BROADCASTS_FILE = path.join(__dirname, 'broadcasts_store.json');
+const CONTACTS_FILE = path.join(__dirname, 'contacts_store.json');
 
 const loadJson = (file, fallback) => {
   try {
@@ -57,12 +60,16 @@ const saveJson = (file, data) => {
 
 let chats = loadJson(CHATS_FILE, []);
 let messagesMap = loadJson(MSGS_FILE, {});
+let broadcastsList = loadJson(BROADCASTS_FILE, []);
+let contactsList = loadJson(CONTACTS_FILE, []);
+let activeBroadcast = null;
+
 let aiSettings = loadJson(AI_SETTINGS_FILE, {
-  enabled: true,
-  businessName: 'Nam Nilam Properties',
-  instructions:
-    'Politely answer questions about project details, plot availability, and pricing starting from ₹18.5 Lakhs. Offer free weekend site visits.',
+  enabled: false,
+  businessName: 'VYJOY International Tourism & Consultancy',
+  instructions: '',
 });
+aiSettings.enabled = false;
 
 // Helper: Sync chat recency & lastMessage from messagesMap on startup
 const syncChatRecencyAndLastMessages = () => {
@@ -99,7 +106,7 @@ const formatPhoneNumber = (jid) => {
 // Generate AI response based on message text and business knowledge
 const generateAiResponse = (text) => {
   const lower = (text || '').toLowerCase().trim();
-  const biz = aiSettings.businessName || 'Nam Nilam';
+  const biz = aiSettings.businessName || 'VYJOY Consultancy';
 
   // 1. Check trained FAQs in knowledge base
   if (Array.isArray(aiSettings.faqs) && aiSettings.faqs.length > 0) {
@@ -114,7 +121,7 @@ const generateAiResponse = (text) => {
     }
   }
 
-  // 2. Check trained Products / Properties catalog
+  // 2. Check trained Products / Services catalog
   if (Array.isArray(aiSettings.products) && aiSettings.products.length > 0) {
     for (const prod of aiSettings.products) {
       if (!prod.name) continue;
@@ -123,77 +130,405 @@ const generateAiResponse = (text) => {
       const matches = lower.includes(pNameLower) || pWords.some((w) => lower.includes(w));
       if (matches) {
         let reply = `Here are the details for ${prod.name}:`;
-        if (prod.price) reply += `\n• Price: ${prod.price}`;
-        if (prod.specs) reply += `\n• Specs: ${prod.specs}`;
-        if (prod.location) reply += `\n• Location: ${prod.location}`;
+        if (prod.price) reply += `\n• Pricing/Charges: ${prod.price}`;
+        if (prod.availability) reply += `\n• Status: ${prod.availability}`;
         if (prod.description) reply += `\n• Details: ${prod.description}`;
-        reply += `\n\nWould you like to schedule a free site visit or receive the layout map on WhatsApp?`;
+        reply += `\n\nWould you like to speak with our Trichy consultant or send your documents for assessment?`;
         return reply;
       }
     }
   }
 
-  // 3. Domain pattern matching: Project details
+  // 3. Domain pattern matching: Overseas Job Vacancies & Recruitment
   if (
-    lower.includes('project') ||
-    lower.includes('details') ||
-    lower.includes('venum') ||
-    lower.includes('detail') ||
-    lower.includes('plot') ||
-    lower.includes('villa')
+    lower.includes('job') ||
+    lower.includes('recruitment') ||
+    lower.includes('vacancy') ||
+    lower.includes('vacancies') ||
+    lower.includes('velai') ||
+    lower.includes('work') ||
+    lower.includes('abroad') ||
+    lower.includes('gulf') ||
+    lower.includes('singapore') ||
+    lower.includes('malaysia') ||
+    lower.includes('dubai job') ||
+    lower.includes('salary') ||
+    lower.includes('interview') ||
+    lower.includes('candidate')
   ) {
-    if (Array.isArray(aiSettings.products) && aiSettings.products.length > 0) {
-      const prodNames = aiSettings.products.map((p) => p.name).join(', ');
-      return `Sure! At ${biz}, our featured projects include: ${prodNames}. Which one would you like more information on?`;
-    }
-    return `Sure! Which project are you interested in? We have Abirami Nagar residential plots and Green Valley duplex villas available.`;
+    return `Vanakkam! At ${biz} (Trichy), we actively recruit qualified candidates for Gulf countries (UAE, Saudi, Qatar, Kuwait, Oman), Singapore, Malaysia, and Europe.\n\nTo check active vacancies and eligibility:\n1. Send your updated Resume/CV\n2. Share your Passport copy (front & back)\n3. Any trade/experience certificates\n\nOur recruitment team will review your profile immediately. Would you like to send your CV here?`;
   }
 
-  // 4. Domain pattern matching: Pricing & Cost
+  // 4. Domain pattern matching: Tourist & Visit Visas
+  if (
+    lower.includes('visa') ||
+    lower.includes('tourist') ||
+    lower.includes('visit') ||
+    lower.includes('schengen') ||
+    lower.includes('stamping') ||
+    lower.includes('transit')
+  ) {
+    return `We provide fast-track tourist and visit visa processing for Dubai (30/60 days), Singapore, Malaysia, Thailand, Bali, UK, USA, Australia, and Schengen Europe countries.\n\nWe assist with complete documentation, application submission, and appointment booking with high success rates. Which country are you planning to visit?`;
+  }
+
+  // 5. Domain pattern matching: Tour Packages & Holidays
+  if (
+    lower.includes('tour') ||
+    lower.includes('package') ||
+    lower.includes('trip') ||
+    lower.includes('travel') ||
+    lower.includes('holiday') ||
+    lower.includes('flight') ||
+    lower.includes('sightseeing')
+  ) {
+    return `Yes! We offer customized international tour packages for Dubai, Thailand, Singapore, Malaysia, Bali, and Europe, as well as domestic tours (Kashmir, Kerala, Goa).\n\nOur packages include return flights, star hotel accommodation, airport transfers, daily breakfast, and guided sightseeing. How many persons are traveling and what is your preferred travel month?`;
+  }
+
+  // 6. Domain pattern matching: Passport & Certificate Attestation
+  if (
+    lower.includes('passport') ||
+    lower.includes('tatkal') ||
+    lower.includes('renewal') ||
+    lower.includes('attestation') ||
+    lower.includes('apostille') ||
+    lower.includes('mea') ||
+    lower.includes('embassy') ||
+    lower.includes('certificate') ||
+    lower.includes('notary')
+  ) {
+    return `We assist with fresh passport appointments, Tatkal passport, renewal, and MEA / Apostille / Embassy certificate attestation (UAE, Qatar, Kuwait, Saudi) for degree, marriage, and birth certificates.\n\nWould you like the list of required documents for attestation or passport booking?`;
+  }
+
+  // 7. Domain pattern matching: Office Location & Consultations (Trichy)
+  if (
+    lower.includes('office') ||
+    lower.includes('location') ||
+    lower.includes('address') ||
+    lower.includes('trichy') ||
+    lower.includes('meet') ||
+    lower.includes('timing') ||
+    lower.includes('direct')
+  ) {
+    const addr = aiSettings.officeAddress || 'VyJoy Tower, Cantonment / Thillai Nagar, Trichy, Tamil Nadu - 620001';
+    return `Our main office is located at:\n📍 ${addr}\n\nWorking Hours: Monday to Saturday, 9:30 AM to 7:00 PM IST.\nYou are welcome to visit our office directly or schedule an appointment with our consultant.`;
+  }
+
+  // 8. Domain pattern matching: Pricing & Fees
   if (
     lower.includes('price') ||
     lower.includes('cost') ||
     lower.includes('rate') ||
-    lower.includes('budget') ||
+    lower.includes('fee') ||
+    lower.includes('charges') ||
     lower.includes('vilai')
   ) {
-    return `Our plots start from ₹18.5 Lakhs (approx ₹1,540 / sq.ft). DTCP and RERA approvals are clear, and bank loans are arranged. Would you like the complete price details?`;
+    return `Our visa processing fees start from ₹5,500 (depending on country), and tour packages start from ₹28,000 per person. Overseas recruitment profile assessments are free of charge.\n\nWhich service or country package would you like the detailed breakdown for?`;
   }
 
-  // 5. Domain pattern matching: Site visits & Location
-  if (
-    lower.includes('visit') ||
-    lower.includes('site') ||
-    lower.includes('location') ||
-    lower.includes('saturday') ||
-    lower.includes('sunday') ||
-    lower.includes('paaka')
-  ) {
-    return `Yes! We arrange free weekend site visits with pickup assistance. Would Saturday or Sunday morning work better for you?`;
+  // 9. Greetings (Tamil / English / Tanglish)
+  if (lower.includes('hi') || lower.includes('hello') || lower.includes('vanakkam') || lower.includes('hey') || lower.includes('namaste')) {
+    return `Vanakkam! Welcome to ${biz} (Trichy).\n\nHow can we assist you today?\n1. ✈️ Tourist & Visit Visas\n2. 💼 Overseas Job Recruitment\n3. 🏖️ International Tour Packages\n4. 🛂 Passport & Document Attestation\n\nPlease let us know what you are looking for!`;
   }
 
-  // 6. Domain pattern matching: Bank Loans & EMI
-  if (
-    lower.includes('loan') ||
-    lower.includes('bank') ||
-    lower.includes('emi') ||
-    lower.includes('interest')
-  ) {
-    return `Up to 80% bank loan approval is available with SBI, HDFC, and Indian Bank. Our team helps with all documentation free of cost.`;
-  }
-
-  // 7. Greetings
-  if (lower.includes('hi') || lower.includes('hello') || lower.includes('vanakkam') || lower.includes('hey')) {
-    return `Vanakkam! Thank you for contacting ${biz}. How can I assist you today with our properties and investments?`;
-  }
-
-  // 8. General fallback using business knowledge instructions
+  // 10. General fallback using business knowledge instructions
   if (aiSettings.instructions && aiSettings.instructions.length > 10) {
-    return `Thank you for contacting ${biz}! I can help you with project brochures, available plots, pricing, and scheduling free site visits. What information are you looking for?`;
+    return `Thank you for contacting ${biz}! We are your trusted partner in Trichy for overseas jobs, visas, tour packages, and passport services. Please let us know your query and our team will guide you right away.`;
   }
 
-  return `Thank you for contacting ${biz}! How can I help you regarding our property and projects today?`;
+  return `Thank you for contacting ${biz}! How can we assist you today with our consultancy and travel services?`;
 };
+
+// -----------------------------------------------------------------
+// SAFE ANTI-BAN SEPARATE BROADCAST BOT ENGINE
+// -----------------------------------------------------------------
+
+// Helper: Format message with recipient variables & spintax {opt1|opt2}
+function formatBroadcastMessage(template, recipient, businessName) {
+  let text = template || '';
+  const nameVal = recipient.name && recipient.name.trim() ? recipient.name.trim() : 'Friend';
+  const phoneVal = recipient.phone || '';
+  const bizVal = businessName || 'VYJOY Consultancy';
+
+  // Replace variables
+  text = text.replace(/\{\{\s*name\s*\}\}|\{name\}/gi, nameVal);
+  text = text.replace(/\{\{\s*phone\s*\}\}|\{phone\}/gi, phoneVal);
+  text = text.replace(/\{\{\s*company\s*\}\}|\{company\}|\{\{\s*business\s*\}\}|\{business\}/gi, bizVal);
+
+  // Resolve spintax {option1|option2|option3} to prevent identical message fingerprints
+  text = text.replace(/\{([^{}]+)\|([^{}]+)\}/g, (match) => {
+    const inner = match.slice(1, -1);
+    const parts = inner.split('|');
+    return parts[Math.floor(Math.random() * parts.length)].trim();
+  });
+
+  return text;
+}
+
+// Helper: Normalize to valid WhatsApp JID (Supports Singapore +65, India +91, and international)
+function normalizeWhatsAppJid(raw) {
+  if (!raw) return null;
+  let clean = raw.toString().replace(/[^0-9]/g, '');
+  if (!clean) return null;
+
+  // 1. Singapore 8-digit mobile/landline (starts with 8, 9, 6) -> 65XXXXXXXX
+  if (clean.length === 8 && /^[689]/.test(clean)) {
+    clean = '65' + clean;
+  }
+  // 2. Already Singapore number with country code 65 (e.g. 6581234567, 6591234567) -> Keep it
+  else if (clean.length === 10 && clean.startsWith('65')) {
+    // Keep 65XXXXXXXX
+  }
+  // 3. Indian 10-digit mobile (starts with 6, 7, 8, 9) -> 91XXXXXXXXXX
+  else if (clean.length === 10 && /^[6-9]/.test(clean)) {
+    clean = '91' + clean;
+  }
+  // 4. 11 digits starting with 0 -> replace with 91
+  else if (clean.length === 11 && clean.startsWith('0')) {
+    clean = '91' + clean.slice(1);
+  }
+
+  if (clean.length < 8 || clean.length > 15) return null;
+  return `${clean}@s.whatsapp.net`;
+}
+
+// Background Dispatcher Loop
+async function runBroadcastWorker(broadcastId) {
+  const bc = activeBroadcast;
+  if (!bc || bc.id !== broadcastId) return;
+
+  console.log(`[Broadcast Bot] Starting campaign: "${bc.name}" (${bc.recipients.length} recipients)`);
+
+  let sentInCurrentBatch = 0;
+
+  while (bc.currentIndex < bc.recipients.length) {
+    if (bc.status === 'cancelled') {
+      console.log(`[Broadcast Bot] Campaign "${bc.name}" cancelled.`);
+      saveJson(BROADCASTS_FILE, broadcastsList);
+      break;
+    }
+
+    if (bc.status === 'paused') {
+      await new Promise((r) => setTimeout(r, 1000));
+      continue;
+    }
+
+    // Anti-ban Batch Cooldown
+    if (bc.batchSize > 0 && sentInCurrentBatch >= bc.batchSize && bc.currentIndex < bc.recipients.length) {
+      const pauseSec = bc.batchPauseSeconds || 180;
+      bc.isBatchPaused = true;
+      bc.batchPauseRemaining = pauseSec;
+      bc.logs.unshift({
+        timestamp: new Date().toLocaleTimeString(),
+        type: 'system',
+        message: `🛡️ Anti-ban cooldown: Resting for ${pauseSec}s to protect WhatsApp number...`,
+      });
+
+      console.log(`[Broadcast Bot] Batch pause: Resting for ${pauseSec}s...`);
+
+      for (let s = pauseSec; s > 0; s--) {
+        if (bc.status === 'cancelled') break;
+        bc.batchPauseRemaining = s;
+        await new Promise((r) => setTimeout(r, 1000));
+      }
+      bc.isBatchPaused = false;
+      bc.batchPauseRemaining = 0;
+      sentInCurrentBatch = 0;
+
+      if (bc.status === 'cancelled') break;
+    }
+
+    const current = bc.recipients[bc.currentIndex];
+    bc.currentRecipient = current;
+    const jid = normalizeWhatsAppJid(current.phone);
+
+    if (!jid) {
+      bc.failedCount++;
+      bc.logs.unshift({
+        timestamp: new Date().toLocaleTimeString(),
+        type: 'error',
+        phone: current.phone,
+        name: current.name,
+        message: 'Invalid phone number format',
+      });
+      bc.currentIndex++;
+      continue;
+    }
+
+    if (connectionStatus !== 'connected' || !sock) {
+      bc.logs.unshift({
+        timestamp: new Date().toLocaleTimeString(),
+        type: 'warning',
+        message: 'WhatsApp disconnected. Waiting 5s for reconnection...',
+      });
+      await new Promise((r) => setTimeout(r, 5000));
+      continue;
+    }
+
+    // Anti-Ban Random Jitter Delay
+    const minD = Math.max(1, bc.delaySecondsMin || 15);
+    const maxD = Math.max(minD, bc.delaySecondsMax || 30);
+    const delaySec = Math.floor(Math.random() * (maxD - minD + 1)) + minD;
+
+    for (let c = delaySec; c > 0; c--) {
+      if (bc.status === 'cancelled') break;
+      while (bc.status === 'paused') {
+        await new Promise((r) => setTimeout(r, 1000));
+        if (bc.status === 'cancelled') break;
+      }
+      bc.nextCountdown = c;
+      await new Promise((r) => setTimeout(r, 1000));
+    }
+    bc.nextCountdown = 0;
+    if (bc.status === 'cancelled') break;
+
+    // Simulate Human Typing Presence
+    if (bc.simulateTyping && sock) {
+      try {
+        await sock.sendPresenceUpdate('composing', jid);
+        const typingDuration = Math.floor(Math.random() * 2000) + 2000;
+        await new Promise((r) => setTimeout(r, typingDuration));
+        await sock.sendPresenceUpdate('paused', jid);
+      } catch (e) {}
+    }
+
+    // Format Personalized & Spintax Message
+    const customizedText = formatBroadcastMessage(bc.template, current, aiSettings.businessName);
+
+    // ── Send with Retry (up to 3 attempts, waits for reconnect on Connection Closed) ──
+    let sendSuccess = false;
+    const MAX_RETRIES = 3;
+
+    for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
+      // Wait if WhatsApp is not connected yet (max 30s per attempt)
+      let waitedSec = 0;
+      while ((connectionStatus !== 'connected' || !sock) && waitedSec < 30) {
+        if (bc.status === 'cancelled') break;
+        bc.logs.unshift({
+          timestamp: new Date().toLocaleTimeString(),
+          type: 'warning',
+          message: `⏳ Waiting for WhatsApp reconnect... (${waitedSec}s) Attempt ${attempt}/${MAX_RETRIES}`,
+        });
+        await new Promise((r) => setTimeout(r, 3000));
+        waitedSec += 3;
+      }
+
+      if (bc.status === 'cancelled') break;
+
+      if (connectionStatus !== 'connected' || !sock) {
+        // Still not connected after waiting — try next attempt
+        if (attempt < MAX_RETRIES) {
+          bc.logs.unshift({
+            timestamp: new Date().toLocaleTimeString(),
+            type: 'warning',
+            message: `🔄 Retrying ${current.phone}... (Attempt ${attempt}/${MAX_RETRIES})`,
+          });
+          await new Promise((r) => setTimeout(r, 5000));
+          continue;
+        }
+        break;
+      }
+
+      try {
+        await sock.sendMessage(jid, { text: customizedText });
+        sendSuccess = true;
+        bc.sentCount++;
+        sentInCurrentBatch++;
+
+        bc.logs.unshift({
+          timestamp: new Date().toLocaleTimeString(),
+          type: 'success',
+          phone: current.phone,
+          name: current.name || 'Friend',
+          message: `✅ Sent to ${current.phone}${attempt > 1 ? ` (retry ${attempt})` : ''}`,
+          preview: customizedText.substring(0, 50) + (customizedText.length > 50 ? '...' : ''),
+        });
+
+        if (bc.logs.length > 100) bc.logs.pop();
+
+        // Record in local messages store and chat lists
+        const msgObj = {
+          id: `bc_msg_${Date.now()}`,
+          conversationId: jid,
+          sender: 'human',
+          text: customizedText,
+          timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+          status: 'sent',
+        };
+        if (!messagesMap[jid]) messagesMap[jid] = [];
+        messagesMap[jid].push(msgObj);
+        saveJson(MSGS_FILE, messagesMap);
+
+        let chatEntry = chats.find((c) => c.id === jid);
+        if (!chatEntry) {
+          chatEntry = {
+            id: jid,
+            contactName: current.name || formatPhoneNumber(jid),
+            contactPhone: formatPhoneNumber(jid),
+            lastMessage: customizedText,
+            lastMessageTime: msgObj.timestamp,
+            rawTime: Math.floor(Date.now() / 1000),
+            unreadCount: 0,
+            isAiMode: true,
+          };
+          chats.unshift(chatEntry);
+        } else {
+          chatEntry.lastMessage = customizedText;
+          chatEntry.lastMessageTime = msgObj.timestamp;
+          chatEntry.rawTime = Math.floor(Date.now() / 1000);
+        }
+        saveJson(CHATS_FILE, chats);
+        break; // Success — exit retry loop
+
+      } catch (sendErr) {
+        console.error(`[Broadcast Bot] Send attempt ${attempt}/${MAX_RETRIES} failed for ${jid}:`, sendErr.message);
+
+        if (attempt < MAX_RETRIES) {
+          bc.logs.unshift({
+            timestamp: new Date().toLocaleTimeString(),
+            type: 'warning',
+            phone: current.phone,
+            name: current.name,
+            message: `🔄 Send failed (${sendErr.message}). Retrying in 8s... (${attempt}/${MAX_RETRIES})`,
+          });
+          await new Promise((r) => setTimeout(r, 8000)); // Wait 8s before retry
+        } else {
+          // All retries exhausted
+          bc.failedCount++;
+          bc.logs.unshift({
+            timestamp: new Date().toLocaleTimeString(),
+            type: 'error',
+            phone: current.phone,
+            name: current.name,
+            message: `❌ Failed after ${MAX_RETRIES} attempts: ${sendErr.message || 'Send failed'}`,
+          });
+        }
+      }
+    }
+
+    bc.currentIndex++;
+
+    const histIdx = broadcastsList.findIndex((b) => b.id === bc.id);
+    if (histIdx >= 0) {
+      broadcastsList[histIdx] = { ...bc };
+      saveJson(BROADCASTS_FILE, broadcastsList);
+    }
+  }
+
+  if (bc.status !== 'cancelled') {
+    bc.status = 'completed';
+    bc.logs.unshift({
+      timestamp: new Date().toLocaleTimeString(),
+      type: 'system',
+      message: `🎉 Campaign finished! Delivered: ${bc.sentCount}, Failed: ${bc.failedCount}, Total: ${bc.recipients.length}`,
+    });
+  }
+
+  const histIdx = broadcastsList.findIndex((b) => b.id === bc.id);
+  if (histIdx >= 0) {
+    broadcastsList[histIdx] = { ...bc };
+    saveJson(BROADCASTS_FILE, broadcastsList);
+  }
+}
 
 // Start Baileys Connection
 async function startWhatsAppSocket() {
@@ -207,7 +542,10 @@ async function startWhatsAppSocket() {
       auth: state,
       printQRInTerminal: true,
       logger: pino({ level: 'silent' }),
-      browser: ['Nam Nilam AI', 'Chrome', '1.0.0'],
+      browser: Browsers.macOS('Desktop'),
+      // Broadcast-Only Mode: disable full history sync to prevent WhatsApp conflict errors
+      syncFullHistory: false,
+      getMessage: async () => undefined,
     });
 
     sock.ev.on('creds.update', saveCreds);
@@ -255,15 +593,16 @@ async function startWhatsAppSocket() {
         currentQr = null;
         currentQrImage = null;
         connectedUser = {
-          id: sock.user?.id ? formatPhoneNumber(sock.user.id) : '+91 97876 00221',
-          name: sock.user?.name || 'Nam Nilam WhatsApp',
+          id: sock.user?.id ? formatPhoneNumber(sock.user.id) : '',
+          name: sock.user?.name || 'VYJOY Broadcast',
         };
       }
     });
 
-    // Handle Initial History Sync (When WhatsApp Web connects and syncs chats)
-    sock.ev.on('messaging-history.set', ({ chats: historyChats, contacts: historyContacts, messages: historyMessages }) => {
-      console.log(`[WhatsApp] History sync received: ${historyChats?.length || 0} chats, ${historyContacts?.length || 0} contacts, ${historyMessages?.length || 0} messages`);
+    // Broadcast-Only Mode: History sync DISABLED — we don't need to pull chat history
+    sock.ev.on('messaging-history.set', () => {
+      console.log('[WhatsApp] History sync skipped — Broadcast-Only mode active.');
+      return; // Do nothing
       
       // 1. Build contact phonebook name map
       const contactNamesMap = {};
@@ -361,156 +700,11 @@ async function startWhatsAppSocket() {
       }
     });
 
-    // Handle Chats Update/Upsert
-    sock.ev.on('chats.upsert', (newChats) => {
-      if (Array.isArray(newChats)) {
-        for (const c of newChats) {
-          if (!c.id || c.id.endsWith('@g.us') || c.id === 'status@broadcast') continue;
-          const contactPhone = formatPhoneNumber(c.id);
-          const contactName = c.name || contactPhone;
-          const existingIdx = chats.findIndex((x) => x.id === c.id);
-          if (existingIdx >= 0) {
-            if (c.unreadCount !== undefined) chats[existingIdx].unreadCount = c.unreadCount;
-          } else {
-            chats.unshift({
-              id: c.id,
-              contactName,
-              contactPhone,
-              lastMessage: '',
-              lastMessageTime: '',
-              unreadCount: c.unreadCount || 0,
-              isAiMode: true,
-            });
-          }
-        }
-        saveJson(CHATS_FILE, chats);
-      }
-    });
+    // Broadcast-Only Mode: Chats upsert DISABLED
+    sock.ev.on('chats.upsert', () => { /* Broadcast-only: ignore incoming chat updates */ });
 
-    // Handle Incoming / Outgoing Messages
-    sock.ev.on('messages.upsert', async ({ messages: newMessages, type }) => {
-      if (type !== 'notify' && type !== 'append') return;
-
-      for (const m of newMessages) {
-        if (!m.message) continue;
-
-        const remoteJid = m.key.remoteJid;
-        if (!remoteJid || remoteJid.endsWith('@g.us') || remoteJid === 'status@broadcast') continue;
-
-        const text =
-          m.message.conversation ||
-          m.message.extendedTextMessage?.text ||
-          m.message.imageMessage?.caption ||
-          '';
-
-        if (!text.trim()) continue;
-
-        const isFromMe = Boolean(m.key.fromMe);
-        const contactPhone = formatPhoneNumber(remoteJid);
-        const contactName = m.pushName || contactPhone;
-        const tsSeconds = typeof m.messageTimestamp === 'number'
-          ? m.messageTimestamp
-          : (m.messageTimestamp?.low || Math.floor(Date.now() / 1000));
-        const timeString = new Date(tsSeconds * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-
-        const msgObj = {
-          id: m.key.id || `msg_${Date.now()}`,
-          conversationId: remoteJid,
-          sender: isFromMe ? 'human' : 'customer',
-          text: text.trim(),
-          timestamp: timeString,
-          rawTime: tsSeconds,
-          status: 'read',
-        };
-
-        // Store message
-        if (!messagesMap[remoteJid]) messagesMap[remoteJid] = [];
-        if (!messagesMap[remoteJid].some((x) => x.id === msgObj.id)) {
-          messagesMap[remoteJid].push(msgObj);
-        }
-        saveJson(MSGS_FILE, messagesMap);
-
-        // Update chats list and MOVE TO TOP!
-        const existingChatIndex = chats.findIndex((c) => c.id === remoteJid);
-        let chatObj;
-        if (existingChatIndex >= 0) {
-          chatObj = chats.splice(existingChatIndex, 1)[0];
-          chatObj.lastMessage = text.trim();
-          chatObj.lastMessageTime = timeString;
-          chatObj.rawTime = tsSeconds;
-          if (contactName && (chatObj.contactName === contactPhone || !chatObj.contactName)) {
-            chatObj.contactName = contactName;
-          }
-          if (!isFromMe && type === 'notify') {
-            chatObj.unreadCount = (chatObj.unreadCount || 0) + 1;
-          }
-        } else {
-          chatObj = {
-            id: remoteJid,
-            contactName,
-            contactPhone,
-            lastMessage: text.trim(),
-            lastMessageTime: timeString,
-            rawTime: tsSeconds,
-            unreadCount: isFromMe || type === 'append' ? 0 : 1,
-            isAiMode: true,
-          };
-        }
-        chats.unshift(chatObj);
-        saveJson(CHATS_FILE, chats);
-
-        console.log(`[WhatsApp] ${isFromMe ? 'You' : contactName}: "${text}"`);
-
-        // AI ASSISTANT RESPONSE ENGINE (Only reply for realtime incoming customer messages)
-        if (!isFromMe && type === 'notify') {
-          const chat = chats.find((c) => c.id === remoteJid);
-          const isChatAiActive = chat ? chat.isAiMode !== false : true;
-
-          if (aiSettings.enabled && isChatAiActive) {
-            console.log(`[AI Assistant] Processing incoming message from ${contactName}...`);
-            const aiAnswer = generateAiResponse(text);
-
-            setTimeout(async () => {
-              try {
-                await sock.sendMessage(remoteJid, { text: aiAnswer });
-
-                const aiMsgObj = {
-                  id: `ai_${Date.now()}`,
-                  conversationId: remoteJid,
-                  sender: 'ai',
-                  text: aiAnswer,
-                  timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-                  rawTime: Math.floor(Date.now() / 1000),
-                  isAiReplied: true,
-                  status: 'read',
-                };
-
-                messagesMap[remoteJid].push(aiMsgObj);
-                saveJson(MSGS_FILE, messagesMap);
-
-                // Update chat snippet and move to top
-                const cIdx = chats.findIndex((c) => c.id === remoteJid);
-                if (cIdx >= 0) {
-                  const c = chats.splice(cIdx, 1)[0];
-                  c.lastMessage = aiAnswer;
-                  c.lastMessageTime = aiMsgObj.timestamp;
-                  c.rawTime = aiMsgObj.rawTime;
-                  c.unreadCount = 0;
-                  chats.unshift(c);
-                  saveJson(CHATS_FILE, chats);
-                }
-
-                console.log(`[AI Assistant] Replied to ${contactName}: "${aiAnswer}"`);
-              } catch (sendErr) {
-                console.error('[AI Assistant] Error sending reply:', sendErr.message);
-              }
-            }, 1200);
-          } else {
-            console.log(`[AI Assistant] OFF — Received message from ${contactName}, no automated reply sent.`);
-          }
-        }
-      }
-    });
+    // Broadcast-Only Mode: Incoming messages DISABLED — only SEND, never receive/store
+    sock.ev.on('messages.upsert', () => { /* Broadcast-only: ignore all incoming messages */ });
   } catch (err) {
     console.error('[WhatsApp] Initialization error:', err.message);
     connectionStatus = 'disconnected';
@@ -565,6 +759,24 @@ app.get('/api/chats', (req, res) => {
   res.json({
     chats,
   });
+});
+
+// 3b. Contacts list
+app.get('/api/contacts', (req, res) => {
+  res.json({
+    success: true,
+    contacts: contactsList,
+  });
+});
+
+app.post('/api/contacts', (req, res) => {
+  const { contacts } = req.body;
+  if (Array.isArray(contacts)) {
+    contactsList = contacts;
+    saveJson(CONTACTS_FILE, contactsList);
+    return res.json({ success: true, count: contactsList.length });
+  }
+  res.status(400).json({ success: false, error: 'contacts array required' });
 });
 
 // 4. Messages for specific chat
@@ -704,8 +916,131 @@ app.post('/api/disconnect', async (req, res) => {
   }
 });
 
+// 9. Anti-Ban Broadcast API Endpoints
+
+// 9.1 Start Broadcast Campaign
+app.post('/api/broadcasts/start', (req, res) => {
+  const {
+    name,
+    template,
+    recipients,
+    delaySecondsMin,
+    delaySecondsMax,
+    simulateTyping,
+    batchSize,
+    batchPauseSeconds,
+  } = req.body;
+
+  if (!template || !template.trim()) {
+    return res.status(400).json({ error: 'Message template is required.' });
+  }
+
+  if (!Array.isArray(recipients) || recipients.length === 0) {
+    return res.status(400).json({ error: 'Recipients list is empty.' });
+  }
+
+  if (activeBroadcast && (activeBroadcast.status === 'running' || activeBroadcast.status === 'paused')) {
+    return res.status(400).json({
+      error: 'Another broadcast campaign is currently in progress. Please pause or cancel it first.',
+    });
+  }
+
+  const campaignId = `bc_${Date.now()}`;
+  activeBroadcast = {
+    id: campaignId,
+    name: name?.trim() || `Campaign ${new Date().toLocaleDateString()}`,
+    template: template.trim(),
+    recipients,
+    delaySecondsMin: Number(delaySecondsMin) || 15,
+    delaySecondsMax: Number(delaySecondsMax) || 30,
+    simulateTyping: simulateTyping !== false,
+    batchSize: Number(batchSize) || 15,
+    batchPauseSeconds: Number(batchPauseSeconds) || 180,
+    status: 'running',
+    sentCount: 0,
+    failedCount: 0,
+    totalCount: recipients.length,
+    currentIndex: 0,
+    currentRecipient: null,
+    nextCountdown: 0,
+    isBatchPaused: false,
+    batchPauseRemaining: 0,
+    logs: [
+      {
+        timestamp: new Date().toLocaleTimeString(),
+        type: 'system',
+        message: `Campaign initialized with ${recipients.length} recipients. Safe anti-ban mode active.`,
+      },
+    ],
+    createdAt: new Date().toISOString(),
+  };
+
+  broadcastsList.unshift(activeBroadcast);
+  saveJson(BROADCASTS_FILE, broadcastsList);
+
+  runBroadcastWorker(campaignId);
+
+  res.json({ success: true, broadcast: activeBroadcast });
+});
+
+// 9.2 Get Active Broadcast Status & Campaign History
+app.get('/api/broadcasts/status', (req, res) => {
+  res.json({
+    active: activeBroadcast,
+    history: broadcastsList,
+  });
+});
+
+// 9.3 Pause Campaign
+app.post('/api/broadcasts/:id/pause', (req, res) => {
+  const { id } = req.params;
+  if (activeBroadcast && activeBroadcast.id === id) {
+    activeBroadcast.status = 'paused';
+    activeBroadcast.logs.unshift({
+      timestamp: new Date().toLocaleTimeString(),
+      type: 'warning',
+      message: 'Campaign paused by operator.',
+    });
+    saveJson(BROADCASTS_FILE, broadcastsList);
+    return res.json({ success: true, active: activeBroadcast });
+  }
+  res.status(404).json({ error: 'Active broadcast not found.' });
+});
+
+// 9.4 Resume Campaign
+app.post('/api/broadcasts/:id/resume', (req, res) => {
+  const { id } = req.params;
+  if (activeBroadcast && activeBroadcast.id === id) {
+    activeBroadcast.status = 'running';
+    activeBroadcast.logs.unshift({
+      timestamp: new Date().toLocaleTimeString(),
+      type: 'system',
+      message: 'Campaign resumed by operator.',
+    });
+    saveJson(BROADCASTS_FILE, broadcastsList);
+    return res.json({ success: true, active: activeBroadcast });
+  }
+  res.status(404).json({ error: 'Active broadcast not found.' });
+});
+
+// 9.5 Cancel Campaign
+app.post('/api/broadcasts/:id/cancel', (req, res) => {
+  const { id } = req.params;
+  if (activeBroadcast && activeBroadcast.id === id) {
+    activeBroadcast.status = 'cancelled';
+    activeBroadcast.logs.unshift({
+      timestamp: new Date().toLocaleTimeString(),
+      type: 'error',
+      message: 'Campaign stopped by operator.',
+    });
+    saveJson(BROADCASTS_FILE, broadcastsList);
+    return res.json({ success: true, active: activeBroadcast });
+  }
+  res.status(404).json({ error: 'Active broadcast not found.' });
+});
+
 // Start Express Server and WhatsApp socket
 app.listen(PORT, () => {
-  console.log(`[Server] Nam Nilam WhatsApp Bridge listening on http://localhost:${PORT}`);
+  console.log(`[Server] VYJOY WhatsApp Bridge listening on http://localhost:${PORT}`);
   startWhatsAppSocket();
 });

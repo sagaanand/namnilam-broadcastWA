@@ -164,6 +164,44 @@ export interface Template {
   lastModified: string;
 }
 
+export interface BroadcastRecipient {
+  phone: string;
+  name?: string;
+  custom?: string;
+}
+
+export interface BroadcastLogItem {
+  timestamp: string;
+  type: 'success' | 'error' | 'warning' | 'system';
+  phone?: string;
+  name?: string;
+  message: string;
+  preview?: string;
+}
+
+export interface ActiveBroadcastInfo {
+  id: string;
+  name: string;
+  template: string;
+  recipients: BroadcastRecipient[];
+  delaySecondsMin: number;
+  delaySecondsMax: number;
+  simulateTyping: boolean;
+  batchSize: number;
+  batchPauseSeconds: number;
+  status: 'running' | 'paused' | 'completed' | 'cancelled';
+  sentCount: number;
+  failedCount: number;
+  totalCount: number;
+  currentIndex: number;
+  currentRecipient?: BroadcastRecipient | null;
+  nextCountdown?: number;
+  isBatchPaused?: boolean;
+  batchPauseRemaining?: number;
+  logs: BroadcastLogItem[];
+  createdAt: string;
+}
+
 export interface Broadcast {
   id: string;
   workspaceId: string;
@@ -174,7 +212,7 @@ export interface Broadcast {
   sentCount: number;
   deliveredCount: number;
   repliesCount: number;
-  status: 'Scheduled' | 'Sent' | 'Draft';
+  status: 'Scheduled' | 'Sent' | 'Draft' | 'running' | 'paused' | 'completed' | 'cancelled';
   scheduledFor?: string;
   createdAt: string;
 }

@@ -24,7 +24,7 @@ export const RealEstatePage: React.FC = () => {
 
           <div className="bg-white rounded-3xl p-6 sm:p-8 border border-palegreen-200/90 shadow-card text-left space-y-3">
             <p className="text-lg sm:text-xl text-slate-800 leading-relaxed font-medium">
-              Real estate buyers discover projects online and reach out directly on WhatsApp. Nam Nilam WhatsApp AI helps real estate developers, builders, and property consultants instantly answer property enquiries, share plot details, qualify buyer budgets, and arrange site visits 24/7.
+              Real estate buyers discover projects online and reach out directly on WhatsApp. VYJOY AI helps real estate developers, builders, and property consultants instantly answer property enquiries, share plot details, qualify buyer budgets, and arrange site visits 24/7.
             </p>
             <p className="text-base text-slate-600 leading-relaxed">
               With AI WhatsApp automation for real estate, you never lose an interested property buyer due to slow response times or delayed follow-up.
@@ -89,13 +89,11 @@ export const RealEstatePage: React.FC = () => {
             {/* Header */}
             <div className="bg-[#075E54] text-white rounded-2xl px-4 py-3 flex items-center justify-between shadow-xs">
               <div className="flex items-center gap-2.5">
-                <img
-                  src="/nam-nilam-logo.png"
-                  alt="Nam Nilam"
-                  className="w-8 h-8 rounded-full bg-white p-0.5 object-contain"
-                />
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-sky-500 to-blue-700 flex items-center justify-center shrink-0">
+                  <span className="text-white font-black text-xs">VJ</span>
+                </div>
                 <div>
-                  <div className="text-xs font-bold">Nam Nilam AI • Property Advisor</div>
+                  <div className="text-xs font-bold">VYJOY AI • Property Advisor</div>
                   <div className="text-[10px] text-emerald-100">+91 97876 00221 • Online</div>
                 </div>
               </div>
@@ -165,7 +163,7 @@ export const RealEstatePage: React.FC = () => {
             Never lose another property buyer
           </h2>
           <p className="text-slate-600 text-sm sm:text-base max-w-lg mx-auto">
-            Chat with Nam Nilam AI on WhatsApp ({WHATSAPP_NUMBER}) to see how our real estate WhatsApp automation works.
+            Chat with VYJOY AI on WhatsApp ({WHATSAPP_NUMBER}) to see how our real estate WhatsApp automation works.
           </p>
           <div className="pt-2">
             <a
@@ -175,7 +173,7 @@ export const RealEstatePage: React.FC = () => {
               className="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl bg-namnilam-900 hover:bg-namnilam-950 text-white font-bold text-base shadow-md hover:shadow-lg ring-1 ring-gold-400/50 hover:ring-gold-400 transition-all active:scale-95 group"
             >
               <Sparkles className="w-5 h-5 text-gold-300 group-hover:rotate-12 transition-transform" />
-              <span>Chat with Nam Nilam AI →</span>
+              <span>Chat with VYJOY AI →</span>
             </a>
           </div>
         </div>

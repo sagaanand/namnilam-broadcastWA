@@ -55,7 +55,7 @@ const PublicLayout: React.FC<{
 const AppIndex: React.FC = () => {
   const { whatsAppAccount } = useWorkspace();
   if (whatsAppAccount.status === 'connected') {
-    return <Navigate to="/app/inbox" replace />;
+    return <Navigate to="/app/broadcasts" replace />;
   }
   return <Navigate to="/app/connect" replace />;
 };

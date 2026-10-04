@@ -10,7 +10,7 @@ export const FeaturesPage: React.FC = () => {
       icon: MessageCircle,
       title: 'AI Customer Replies',
       subtitle: 'Answer customer questions automatically.',
-      desc: 'Nam Nilam WhatsApp AI responds to customer messages right as they arrive. It handles greetings, product queries, price requests, and FAQs with clarity and polite phrasing, ensuring your customers never experience long wait times.',
+      desc: 'VYJOY AI responds to customer messages right as they arrive. It handles greetings, product queries, price requests, and FAQs with clarity and polite phrasing, ensuring your customers never experience long wait times.',
     },
     {
       icon: Target,
@@ -69,7 +69,7 @@ export const FeaturesPage: React.FC = () => {
 
           <div className="bg-white rounded-3xl p-6 sm:p-8 border border-palegreen-200/90 shadow-card text-left space-y-3">
             <p className="text-lg sm:text-xl text-slate-800 leading-relaxed font-medium">
-              Nam Nilam WhatsApp AI provides practical features designed to automate routine messages while keeping your customer interactions personal, polite, and trustworthy.
+              VYJOY AI provides practical features designed to automate routine messages while keeping your customer interactions personal, polite, and trustworthy.
             </p>
             <p className="text-base text-slate-600 leading-relaxed">
               Every feature is built around the way real businesses use WhatsApp every day: clear answers, fast responses, lead qualification, and easy human takeover.
@@ -119,7 +119,7 @@ export const FeaturesPage: React.FC = () => {
             See these features in action
           </h2>
           <p className="text-slate-600 text-sm sm:text-base max-w-lg mx-auto">
-            Chat with Nam Nilam AI on WhatsApp ({WHATSAPP_NUMBER}) and experience real-time AI replies and lead follow-up.
+            Chat with VYJOY AI on WhatsApp ({WHATSAPP_NUMBER}) and experience real-time AI replies and lead follow-up.
           </p>
           <div className="pt-2">
             <a
@@ -129,7 +129,7 @@ export const FeaturesPage: React.FC = () => {
               className="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl bg-namnilam-900 hover:bg-namnilam-950 text-white font-bold text-base shadow-md hover:shadow-lg ring-1 ring-gold-400/50 hover:ring-gold-400 transition-all active:scale-95 group"
             >
               <Sparkles className="w-5 h-5 text-gold-300 group-hover:rotate-12 transition-transform" />
-              <span>Chat with Nam Nilam AI →</span>
+              <span>Chat with VYJOY AI →</span>
             </a>
           </div>
         </div>

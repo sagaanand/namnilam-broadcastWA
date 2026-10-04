@@ -10,6 +10,8 @@ dist/
 wa_session/
 chats_store.json
 msgs_store.json
+broadcasts_store.json
+contacts_store.json
 *.zip
 vite.config.ts.timestamp*
 

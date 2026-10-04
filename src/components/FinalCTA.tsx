@@ -18,8 +18,8 @@ export const FinalCTA: React.FC<FinalCTAProps> = () => {
         
         {/* Small brand badge */}
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 border border-gold-300/80 text-namnilam-900 text-xs font-bold uppercase tracking-wider shadow-2xs">
-          <img src="/nam-nilam-logo.png" alt="" className="w-4 h-4 object-contain rounded-full" />
-          <span>Nam Nilam WhatsApp AI</span>
+          <span className="inline-flex items-center justify-center w-4 h-4 rounded-full bg-gradient-to-br from-sky-500 to-blue-700 text-white font-black text-[7px] leading-none shrink-0">VJ</span>
+          <span>VYJOY AI</span>
         </div>
 
         {/* Headline */}
@@ -56,7 +56,7 @@ export const FinalCTA: React.FC<FinalCTAProps> = () => {
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-9 py-4 rounded-2xl bg-namnilam-900 hover:bg-namnilam-950 text-white font-bold text-base shadow-lg hover:shadow-xl ring-1 ring-gold-400/50 hover:ring-gold-400 transition-all active:scale-95 group"
             >
               <Sparkles className="w-5 h-5 text-gold-300 group-hover:rotate-12 transition-transform" />
-              <span>Chat with Nam Nilam AI →</span>
+              <span>Chat with VYJOY AI →</span>
             </a>
           </div>
         </div>

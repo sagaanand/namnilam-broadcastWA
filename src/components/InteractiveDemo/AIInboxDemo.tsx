@@ -95,7 +95,7 @@ export const AIInboxDemo: React.FC<AIInboxDemoProps> = () => {
         const aiReplyMsg: ChatMessage = {
           id: `ai-${Date.now()}`,
           sender: 'ai',
-          text: `Nandri for your message! "${currentInput}" pathi details check pannitten. Namma Nam Nilam site manager ungalukku live photos and video call arrange pannuvaaru.`,
+          text: `Nandri for your message! "${currentInput}" pathi details check pannitten. Namma VYJOY AI site manager ungalukku live photos and video call arrange pannuvaaru.`,
           timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
           isAiReplied: true,
         };
@@ -128,7 +128,7 @@ export const AIInboxDemo: React.FC<AIInboxDemoProps> = () => {
                 </span>
               </h3>
               <p className="text-xs text-slate-400">
-                Priya Kumar with Nam Nilam Real Estate Assistant
+                Priya Kumar with VYJOY AI Real Estate Assistant
               </p>
             </div>
           </div>

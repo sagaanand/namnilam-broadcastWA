@@ -22,21 +22,15 @@ export const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         {/* Brand Logo & Name */}
         <Link to="/" onClick={closeMenus} className="flex items-center gap-3 group">
-          <div className="relative">
-            <img
-              src="/nam-nilam-logo.png"
-              alt="Nam Nilam logo"
-              className="w-11 h-11 object-contain rounded-full shadow-2xs ring-2 ring-gold-400/50 p-0.5 bg-white group-hover:scale-105 transition-transform"
-              width="44"
-              height="44"
-            />
+          <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-sky-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-sky-500/20 group-hover:scale-105 transition-transform font-black text-sm tracking-wider">
+            VJ
           </div>
           <div className="flex items-center gap-2">
-            <span className="font-extrabold text-xl tracking-tight text-slate-900 group-hover:text-namnilam-900 transition">
-              Nam Nilam
+            <span className="font-extrabold text-xl tracking-tight text-slate-900 group-hover:text-sky-700 transition">
+              VYJOY
             </span>
-            <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-namnilam-900 bg-white/85 border border-gold-300/70 px-2.5 py-0.5 rounded-full shadow-2xs">
-              <span className="w-1.5 h-1.5 rounded-full bg-wa-light animate-pulse" />
+            <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-sky-800 bg-sky-50 border border-sky-200 px-2.5 py-0.5 rounded-full shadow-2xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
               WhatsApp AI
             </span>
           </div>
@@ -188,10 +182,10 @@ export const Navbar: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold bg-namnilam-900 hover:bg-namnilam-950 text-white px-4 sm:px-5 py-2.5 rounded-xl shadow-xs hover:shadow ring-1 ring-gold-400/40 hover:ring-gold-400 transition-all active:scale-95 group"
-            aria-label="Chat with Nam Nilam AI on WhatsApp (+91 97876 00221)"
+            aria-label="Chat with VYJOY AI on WhatsApp"
           >
             <Sparkles className="w-4 h-4 text-gold-300 group-hover:rotate-12 transition-transform" />
-            <span className="hidden sm:inline">Chat with Nam Nilam AI →</span>
+            <span className="hidden sm:inline">Chat with VYJOY AI →</span>
             <span className="sm:hidden">Chat AI →</span>
           </a>
 
@@ -345,7 +339,7 @@ export const Navbar: React.FC = () => {
               className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-namnilam-900 hover:bg-namnilam-950 text-white font-bold text-sm shadow-md"
             >
               <Sparkles className="w-4 h-4 text-gold-300" />
-              <span>Chat with Nam Nilam AI</span>
+              <span>Chat with VYJOY AI</span>
             </a>
           </div>
         </div>

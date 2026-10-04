@@ -31,7 +31,7 @@ export const AutomationsPage: React.FC = () => {
   return (
     <>
       <SEOHead
-        title="Automations | Nam Nilam AI Workspace"
+        title="Automations | VYJOY AI Workspace"
         description="Configure automated WhatsApp triggers, follow-ups, and lead qualification workflows."
         canonicalUrl="https://wa.namnilam.com/app/automations"
       />

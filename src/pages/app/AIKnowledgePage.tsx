@@ -40,13 +40,13 @@ export const AIKnowledgePage: React.FC = () => {
   >('behavior');
 
   // Tab 1: Profile form state
-  const [businessName, setBusinessName] = useState(knowledgeBase.businessName || 'Nam Nilam Realty');
-  const [industry, setIndustry] = useState(knowledgeBase.industry || 'Real Estate & Property Development');
+  const [businessName, setBusinessName] = useState(knowledgeBase.businessName || 'VYJOY International Tourism & Consultancy');
+  const [industry, setIndustry] = useState(knowledgeBase.industry || 'International Tourism, Visa & Overseas Manpower Consultancy');
   const [description, setDescription] = useState(
-    knowledgeBase.description || 'DTCP & RERA approved residential plots, villa communities, and investment land.'
+    knowledgeBase.description || 'Government-compliant overseas manpower recruitment, visa processing, international tourism, and document attestation consultancy based in Trichy, Tamil Nadu.'
   );
-  const [location, setLocation] = useState(knowledgeBase.location || 'Chennai & Coimbatore, Tamil Nadu');
-  const [contactDetails, setContactDetails] = useState(knowledgeBase.contactDetails || '+91 97876 00221');
+  const [location, setLocation] = useState(knowledgeBase.location || 'Trichy, Tamil Nadu, India');
+  const [contactDetails, setContactDetails] = useState(knowledgeBase.contactDetails || '+91 98424 00000');
   const [officeAddress, setOfficeAddress] = useState(
     knowledgeBase.officeAddress || 'No. 45, Anna Salai, Guindy, Chennai, Tamil Nadu - 600032'
   );
@@ -161,11 +161,14 @@ export const AIKnowledgePage: React.FC = () => {
   // Tab 5: Freeform Document Text
   const [freeformDocument, setFreeformDocument] = useState(
     knowledgeBase.freeformDocument ||
-      `NAM NILAM PROPERTIES - BUSINESS BRIEF:
-Nam Nilam is a trusted real estate development firm in Tamil Nadu specializing in DTCP and RERA approved residential layouts, gated communities, and luxury villas.
-Standard Plot Sizes: 600, 1200, 1500, 1800, 2400 sq.ft.
-Amenities: 40ft and 30ft tar roads, avenue trees, LED street lights, underground drainage provisions, 24/7 security.
-Payment Structure: 10% booking advance, 80% through bank loan, 10% on registration.`
+      `VYJOY INTERNATIONAL TOURISM & CONSULTANCY BRIEF:
+Headquartered in Trichy, Tamil Nadu, VYJOY Consultancy is a premier agency providing end-to-end global mobility solutions.
+Key Verticals:
+1. Overseas Manpower Recruitment: Sourcing qualified talent for Gulf countries (UAE, Saudi Arabia, Qatar, Oman, Kuwait), Singapore, Malaysia, and European destinations.
+2. Visa Services: Tourist, visit, business, transit, and dependent visas for all popular global destinations with high approval track record.
+3. International Tour Packages: Affordable, curated travel experiences covering flights, hotels, transfers, and sightseeing for Dubai, Malaysia, Singapore, Thailand, Bali, and Europe.
+4. Passport & Document Legalization: Seamless passport assistance (Normal/Tatkal), MEA Apostille, HRD attestation, and Embassy attestation.
+Office Hours: Monday to Saturday, 9:30 AM to 7:00 PM IST.`
   );
 
   // Tab 6: Live Testing Simulator
@@ -175,7 +178,7 @@ Payment Structure: 10% booking advance, 80% through bank loan, 10% on registrati
     {
       id: 's1',
       sender: 'ai',
-      text: 'Vanakkam! I am your Nam Nilam AI Assistant. Ask me any question to test how I reply to your customers on WhatsApp.',
+      text: 'Vanakkam! I am your VYJOY Consultancy AI Assistant. Ask me any question about overseas jobs, visas, tour packages, or attestation to test how I reply to your clients on WhatsApp.',
       timestamp: 'Just now',
     },
   ]);
@@ -340,9 +343,9 @@ Payment Structure: 10% booking advance, 80% through bank loan, 10% on registrati
   return (
     <>
       <SEOHead
-        title="AI Knowledge Base & Training | Nam Nilam AI Workspace"
-        description="Comprehensive training dashboard for your Nam Nilam WhatsApp AI Assistant. Configure business profile, prompts, property catalog, and FAQs."
-        canonicalUrl="https://wa.namnilam.com/app/ai"
+        title="AI Knowledge Base & Training | VYJOY Consultancy AI"
+        description="Comprehensive training dashboard for your VYJOY WhatsApp AI Assistant. Configure business profile, prompts, visa & tour catalogs, and FAQs."
+        canonicalUrl="https://vyjoyconsultancy.com/app/ai"
       />
 
       <div className="h-screen w-screen overflow-hidden flex flex-col bg-[#F1F6F3] font-sans antialiased text-slate-900 select-none">
@@ -707,7 +710,7 @@ Payment Structure: 10% booking advance, 80% through bank loan, 10% on registrati
                       type="text"
                       value={businessName}
                       onChange={(e) => setBusinessName(e.target.value)}
-                      placeholder="e.g. Nam Nilam Properties"
+                      placeholder="e.g. VYJOY International Tourism & Consultancy"
                       className="w-full px-3.5 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:bg-white outline-none font-semibold"
                     />
                   </div>

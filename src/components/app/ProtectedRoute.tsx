@@ -22,7 +22,7 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
         <div className="flex flex-col items-center gap-3">
           <div className="w-10 h-10 border-3 border-namnilam-800 border-t-transparent rounded-full animate-spin" />
           <span className="text-xs font-bold text-namnilam-900 tracking-wider uppercase">
-            Loading VYJOY AI Workspace...
+            Loading Nam Nilam AI Workspace...
           </span>
         </div>
       </div>

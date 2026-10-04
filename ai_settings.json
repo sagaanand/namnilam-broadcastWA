@@ -1,81 +1,40 @@
 {
-  "enabled": false,
-  "businessName": "VYJOY International Tourism & Consultancy",
-  "instructions": "Politely and professionally assist clients with overseas job recruitment, work visas, tourist and visit visas (Dubai, Singapore, Malaysia, Schengen, UK, Thailand), international holiday tour packages, passport assistance, and document attestation. Provide guidance in English, Tamil, and Tanglish. Recommend scheduling an in-person consultation at our Trichy head office or submitting documents online for review.",
-  "description": "Government-compliant overseas manpower recruitment, visa processing, international tourism, and document attestation consultancy based in Trichy, Tamil Nadu.",
-  "location": "Trichy, Tamil Nadu, India",
-  "contactDetails": "+91 98424 00000 | info@vyjoyconsultancy.com",
+  "enabled": true,
+  "businessName": "Nam Nilam Realty",
+  "instructions": "Politely answer customer questions about project details, plot availability, and pricing starting from ₹18.5 Lakhs. Offer free weekend site visits.",
+  "description": "DTCP & RERA approved residential plots and villa projects.",
+  "location": "Tamil Nadu",
+  "contactDetails": "+91 97876 00221 | info@namnilam.com",
   "products": [
     {
       "id": "prod_1",
-      "name": "Overseas Job Recruitment & Manpower Placement",
-      "description": "Recruitment services for skilled, semi-skilled, and technical roles across the Gulf (UAE, Saudi, Qatar, Oman, Kuwait), Singapore, Malaysia, and Europe. Direct employer interviews and legal work permits.",
-      "price": "Free consultation & profile evaluation",
-      "availability": "Actively recruiting for multiple international vacancies"
-    },
-    {
-      "id": "prod_2",
-      "name": "Tourist & Visit Visa Processing",
-      "description": "Fast-track tourist, visit, and business visas for Dubai (30/60 days), Singapore, Malaysia, Thailand, Bali, Schengen (Europe), UK, and USA. Complete document checklist, application filling, and appointment booking.",
-      "price": "Starting from ₹5,500 (dependent on country & visa duration)",
-      "availability": "All countries open for application"
-    },
-    {
-      "id": "prod_3",
-      "name": "International & Domestic Tour Packages",
-      "description": "Customized holiday and corporate tour packages for families, couples, and groups. Includes flights, star hotel accommodation, airport transfers, daily breakfast, and guided sightseeing (Dubai, Thailand, Malaysia, Singapore, Kashmir, Kerala).",
-      "price": "International packages starting from ₹28,000 per person",
-      "availability": "Year-round bookings open"
-    },
-    {
-      "id": "prod_4",
-      "name": "Passport Services & Certificate Attestation",
-      "description": "Fresh passport application, Tatkal passport, renewal, ECR/Non-ECR changes, MEA (Ministry of External Affairs) attestation, Apostille, HRD attestation, and Embassy legalization for educational and personal documents.",
-      "price": "Affordable standard processing charges",
-      "availability": "Daily appointments available"
+      "name": "Abirami Nagar Residential Plots",
+      "description": "1200 - 2400 sq.ft DTCP approved clear title plots with 40ft blacktop roads.",
+      "price": "Starting from ₹18.5 Lakhs (₹1,540 / sq.ft)",
+      "availability": "14 plots available"
     }
   ],
   "faqs": [
     {
       "id": "faq_1",
-      "question": "What services does VYJOY Consultancy offer?",
-      "answer": "VYJOY Consultancy specializes in Overseas Job Recruitment & Work Permits, Tourist & Visit Visas, International & Domestic Tour Packages, Passport Assistance, and MEA/Embassy Certificate Attestation."
-    },
-    {
-      "id": "faq_2",
-      "question": "Where is VYJOY Consultancy located?",
-      "answer": "Our main office is located in Trichy, Tamil Nadu. Clients can visit us in person or complete document verification and consultation online via WhatsApp."
-    },
-    {
-      "id": "faq_3",
-      "question": "Which countries do you process tourist and visit visas for?",
-      "answer": "We process tourist, visit, and business visas for Dubai/UAE, Singapore, Malaysia, Thailand, Bali, Schengen Europe countries, UK, USA, Australia, and GCC nations."
-    },
-    {
-      "id": "faq_4",
-      "question": "How do I apply for overseas jobs through VYJOY?",
-      "answer": "Please send your updated Resume/CV, passport copy, and educational/experience certificates on WhatsApp. Our recruitment team will review your profile and match you with active employer openings in Gulf, Singapore, Malaysia, or Europe."
-    },
-    {
-      "id": "faq_5",
-      "question": "How long does certificate attestation take?",
-      "answer": "State HRD attestation usually takes 7-10 working days, MEA Apostille takes 3-5 days, and Embassy attestation (UAE, Qatar, Kuwait, Saudi) takes 10-15 working days depending on the embassy."
+      "question": "Are bank loans available?",
+      "answer": "Yes, up to 80% bank loan approval is ready with SBI, HDFC, and Indian Bank."
     }
   ],
-  "industry": "International Tourism, Visa & Overseas Manpower Consultancy",
-  "officeAddress": "VyJoy Tower, Cantonment / Thillai Nagar, Trichy, Tamil Nadu - 620001",
-  "websiteUrl": "https://vyjoyconsultancy.com",
+  "industry": "Real Estate & Property Development",
+  "officeAddress": "No. 45, Anna Salai, Guindy, Chennai, Tamil Nadu - 600032",
+  "websiteUrl": "https://namnilam.com",
   "languageStyle": "tanglish",
   "alwaysRules": [
-    "Always clarify candidate qualifications and passport validity (minimum 6 months required)",
-    "Always provide transparent guidance on visa processing timelines and required documents",
-    "Always invite clients to visit the Trichy office or schedule a WhatsApp phone consultation"
+    "Always mention 100% DTCP and RERA approval for all plots",
+    "Always offer free Saturday & Sunday site visits with cab pickup",
+    "Always ask for customer preferred location or budget if unclear"
   ],
   "neverRules": [
-    "Never guarantee 100% visa approval as issuance is strictly at the discretion of the embassy/consulate",
-    "Never promise unverified overseas job salaries without an official employer offer letter",
-    "Never collect unauthorized fees or compromise client privacy"
+    "Never promise price discounts or reductions without management approval",
+    "Never give unverified legal commitments or inaccurate plot sizes",
+    "Never share personal phone numbers of field staff without verification"
   ],
-  "freeformDocument": "VYJOY INTERNATIONAL TOURISM & CONSULTANCY BRIEF:\nHeadquartered in Trichy, Tamil Nadu, VYJOY Consultancy is a premier agency providing end-to-end global mobility solutions.\nKey Verticals:\n1. Overseas Manpower Recruitment: Sourcing qualified talent for Gulf countries (UAE, Saudi Arabia, Qatar, Oman, Kuwait), Singapore, Malaysia, and European destinations across healthcare, hospitality, engineering, construction, IT, and skilled labor.\n2. Visa Services: Tourist, visit, business, transit, and dependent visas for all popular global destinations with high approval track record.\n3. International Tour Packages: Affordable, curated travel experiences covering flights, hotels, transfers, and sightseeing for Dubai, Malaysia, Singapore, Thailand, Bali, and Europe.\n4. Passport & Document Legalization: Seamless passport assistance (Normal/Tatkal), MEA Apostille, HRD attestation, and Embassy attestation.\nOffice Hours: Monday to Saturday, 9:30 AM to 7:00 PM IST.",
+  "freeformDocument": "NAM NILAM PROPERTIES - BUSINESS BRIEF:\nNam Nilam is a trusted real estate development firm in Tamil Nadu specializing in DTCP and RERA approved residential layouts, gated communities, and luxury villas.\nStandard Plot Sizes: 600, 1200, 1500, 1800, 2400 sq.ft.\nAmenities: 40ft and 30ft tar roads, avenue trees, LED street lights, underground drainage provisions, 24/7 security.\nPayment Structure: 10% booking advance, 80% through bank loan, 10% on registration.",
   "responseStyle": "Professional"
 }

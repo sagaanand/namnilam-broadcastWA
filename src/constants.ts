@@ -1,7 +1,7 @@
-export const SITE_URL = 'https://vyjoyconsultancy.com';
-export const WHATSAPP_NUMBER = '+91 98424 00000';
-export const WHATSAPP_RAW_NUMBER = '919842400000';
-export const WHATSAPP_PREFILLED_TEXT = 'Hi VYJOY Consultancy, I want to know more about Overseas Jobs, Visas, and Tour Packages.';
+export const SITE_URL = 'https://wa.namnilam.com';
+export const WHATSAPP_NUMBER = '+91 97876 00221';
+export const WHATSAPP_RAW_NUMBER = '919787600221';
+export const WHATSAPP_PREFILLED_TEXT = 'Hi Nam Nilam AI, I want to know more about WhatsApp AI.';
 export const WHATSAPP_CHAT_URL = `https://wa.me/${WHATSAPP_RAW_NUMBER}?text=${encodeURIComponent(WHATSAPP_PREFILLED_TEXT)}`;
 
 export const SOCIAL_LINKS = [
@@ -19,44 +19,69 @@ export interface FAQItem {
 
 export const FAQ_ITEMS: FAQItem[] = [
   {
-    question: 'What is VYJOY WhatsApp AI?',
+    question: 'What is WhatsApp AI?',
     answer:
-      'VYJOY WhatsApp AI is an intelligent assistant that helps handle client inquiries 24/7 on WhatsApp. It automatically provides accurate details on overseas job openings, tourist/visit visa requirements, tour packages, passport services, and document attestation.',
+      'WhatsApp AI is an AI assistant that helps businesses communicate with customers through WhatsApp. It automatically responds to incoming customer enquiries, provides accurate business information, qualifies leads, and keeps conversations moving 24/7.',
   },
   {
-    question: 'How does the WhatsApp AI bot work?',
+    question: 'How does WhatsApp AI work?',
     answer:
-      'When a client messages your WhatsApp number, the AI reads their intent, matches it with VYJOY Consultancy verified guidelines, and responds promptly in English or Tamil/Tanglish. You remain in control and can take over the chat at any point.',
+      'When a customer sends a message to your WhatsApp number, the AI reads and understands their intent, matches it with the business details you provided, and responds promptly. You remain in control and can take over the chat at any point.',
   },
   {
-    question: 'Can the bot send separate broadcasts without getting blocked?',
+    question: 'Can AI reply to my WhatsApp customers?',
     answer:
-      'Yes! The platform includes a Safe Anti-Ban Broadcast Engine with randomized jitter delays (15–30s), typing simulation, spintax variations, and batch rest cooldowns to ensure full compliance with WhatsApp delivery patterns.',
+      'Yes. Nam Nilam WhatsApp AI is built specifically to converse naturally with your customers on WhatsApp on your behalf, providing helpful answers without manual typing.',
   },
   {
-    question: 'Can I use my existing WhatsApp business number?',
+    question: 'Can I use my existing WhatsApp?',
     answer:
-      'Yes. You connect your existing WhatsApp account directly using standard WhatsApp QR device linking, without changing your phone number.',
+      'Yes. You can connect your existing WhatsApp account directly using standard WhatsApp device linking, without needing to change your phone number.',
   },
   {
-    question: 'What services does the AI guide clients on?',
+    question: 'What information does the AI use?',
     answer:
-      'The AI is trained on Overseas Job Recruitment (Gulf, Singapore, Malaysia, Europe), Tourist & Visit Visas (Dubai, Singapore, Schengen, etc.), International Tour Packages, and MEA / Embassy Certificate Attestation.',
+      'The AI uses the specific information you provide about your business, including your products, services, pricing, operating policies, location, and answers to common customer questions.',
   },
   {
-    question: 'Can clients apply or submit documents on WhatsApp?',
+    question: 'Can I teach the AI about my business?',
     answer:
-      'Yes. Clients can share their CVs, passport copies, and queries directly on WhatsApp, and the AI guides them on next steps while logging the lead for your counseling team.',
+      'Yes. You provide your business details, brochures, FAQs, price lists, and specific instructions so the AI accurately reflects your business tone and knowledge.',
   },
   {
-    question: 'Can a human counselor take over any conversation?',
+    question: 'Can AI answer customer questions?',
     answer:
-      'Yes. You retain 100% control. Counselors can view live incoming messages in the Inbox and type replies directly from the dashboard or their linked phone whenever personal attention is required.',
+      'Yes. It can answer routine and detailed questions regarding your products, service options, timings, pricing, location, and availability.',
   },
   {
-    question: 'Is the bot available 24/7?',
+    question: 'Can AI follow up with leads?',
     answer:
-      'Yes. The AI operates continuously around the clock, greeting late-night inquiries and overseas applicants instantly.',
+      'Yes. The AI keeps conversations active by asking clarifying questions, qualifying requirements, and re-engaging interested customers who reached out.',
+  },
+  {
+    question: 'Can a human take over a conversation?',
+    answer:
+      'Yes. You retain 100% control. You can step into any WhatsApp conversation directly from your phone whenever a customer requires human attention.',
+  },
+  {
+    question: 'Can WhatsApp AI be used for real estate?',
+    answer:
+      'Yes. It is widely used by real estate businesses to handle property inquiries, share plot details, answer pricing questions, check budget preferences, and arrange site visits.',
+  },
+  {
+    question: 'Can small businesses use WhatsApp AI?',
+    answer:
+      'Yes. Small businesses and solo consultants use Nam Nilam WhatsApp AI to provide immediate, professional customer service around the clock without hiring a large support team.',
+  },
+  {
+    question: 'Is WhatsApp AI available 24/7?',
+    answer:
+      'Yes. The AI operates continuously, ensuring your business instantly welcomes and responds to customer inquiries late at night, on weekends, and during busy hours.',
+  },
+  {
+    question: 'How do I get started?',
+    answer:
+      'You can start immediately by chatting with our AI on WhatsApp at +91 97876 00221 to see it in action and connect your own business WhatsApp.',
   },
 ];
 
@@ -69,87 +94,87 @@ export interface PageMeta {
 
 export const PAGES_METADATA: Record<string, PageMeta> = {
   '/': {
-    title: 'VYJOY Consultancy | WhatsApp AI & Automation Platform',
+    title: 'Nam Nilam WhatsApp AI | Let AI Talk to Your Customers',
     description:
-      'Automate your client conversations, overseas job inquiries, visa consultations, and anti-ban WhatsApp broadcasts with VYJOY Consultancy AI.',
+      'Connect your WhatsApp with AI and let Nam Nilam AI handle customer conversations, enquiries, follow-ups and business communication 24/7.',
     canonical: `${SITE_URL}/`,
-    h1: 'AI-Powered WhatsApp Automation for VYJOY Consultancy',
+    h1: 'Let AI Talk to Your Customers on WhatsApp',
   },
   '/whatsapp-ai': {
-    title: 'What Is WhatsApp AI? | VYJOY Consultancy',
+    title: 'What Is WhatsApp AI? | Nam Nilam',
     description:
-      'Learn how WhatsApp AI automates client consultations for overseas recruitment, visa processing, and tourism packages.',
+      'Learn what WhatsApp AI is, how it works for customer communication, and how automated AI replies compare with manual messaging.',
     canonical: `${SITE_URL}/whatsapp-ai`,
-    h1: 'What Is WhatsApp AI for Consultancies?',
+    h1: 'What Is WhatsApp AI?',
   },
   '/whatsapp-ai-for-business': {
-    title: 'WhatsApp AI for Global Mobility & Consultancies | VYJOY',
+    title: 'WhatsApp AI for Business | Customer Communication Automation',
     description:
-      'Discover how WhatsApp AI helps consultancies handle high enquiry volume, qualify candidates, and manage safe client broadcasts.',
+      'Discover how WhatsApp AI helps businesses get faster replies, handle higher message volume, follow up with leads, and maintain human control.',
     canonical: `${SITE_URL}/whatsapp-ai-for-business`,
-    h1: 'WhatsApp AI for Global Mobility Consultancies',
+    h1: 'WhatsApp AI for Your Business',
   },
   '/how-it-works': {
-    title: 'How It Works | VYJOY WhatsApp AI',
+    title: 'How WhatsApp AI Works | Nam Nilam',
     description:
-      'Explore how to link your WhatsApp, train the AI on visas and overseas vacancies, and run safe separate broadcasts.',
+      'Explore the 4-step process to connect your WhatsApp, teach the AI your business information, let AI talk, and take control anytime.',
     canonical: `${SITE_URL}/how-it-works`,
-    h1: 'How Does VYJOY WhatsApp AI Work?',
+    h1: 'How Does WhatsApp AI Work?',
   },
   '/features': {
-    title: 'Platform Features | VYJOY WhatsApp AI',
+    title: 'WhatsApp AI Features | Nam Nilam',
     description:
-      'Explore 24/7 AI chat replies, candidate qualification, anti-ban broadcast bot, and live web inbox.',
+      'Explore core features including instant AI replies, lead qualification, automatic follow-ups, custom business knowledge, and 24/7 availability.',
     canonical: `${SITE_URL}/features`,
-    h1: 'All-In-One WhatsApp Automation & Safe Broadcast Platform',
+    h1: 'Everything You Need to Let AI Handle WhatsApp Conversations',
   },
   '/use-cases': {
-    title: 'Use Cases | VYJOY WhatsApp AI',
+    title: 'WhatsApp AI Use Cases | Nam Nilam',
     description:
-      'Practical WhatsApp automation use cases for overseas recruitment, tourist visas, tour booking, and document attestation.',
+      'Explore practical WhatsApp AI use cases for customer support, sales enquiries, lead qualification, appointment booking, and product questions.',
     canonical: `${SITE_URL}/use-cases`,
-    h1: 'What Can You Automate with VYJOY WhatsApp AI?',
+    h1: 'What Can You Use WhatsApp AI For?',
   },
   '/whatsapp-ai-for-real-estate': {
-    title: 'Visa & Tourism Services | VYJOY Consultancy',
+    title: 'WhatsApp AI for Real Estate | Nam Nilam',
     description:
-      'Automate visa inquiries, tourist visa checklists, travel packages, and client follow-ups on WhatsApp.',
+      'Automate real estate property enquiries, pricing details, plot availability, site visit bookings, and lead follow-ups on WhatsApp.',
     canonical: `${SITE_URL}/whatsapp-ai-for-real-estate`,
-    h1: 'WhatsApp Automation for Visas & International Tourism',
+    h1: 'WhatsApp AI for Real Estate Businesses',
   },
   '/whatsapp-ai-for-small-business': {
-    title: 'Overseas Recruitment Automation | VYJOY Consultancy',
+    title: 'WhatsApp AI for Small Businesses | Nam Nilam',
     description:
-      'Manage overseas job seekers, candidate CV collection, and interview announcements via WhatsApp.',
+      'How small businesses and independent owners handle customer enquiries, share pricing, and answer questions 24/7 without a big team.',
     canonical: `${SITE_URL}/whatsapp-ai-for-small-business`,
-    h1: 'WhatsApp AI for Overseas Manpower & Recruitment',
+    h1: 'WhatsApp AI for Small Businesses',
   },
   '/whatsapp-ai-for-customer-support': {
-    title: 'Client Support on WhatsApp | VYJOY Consultancy',
+    title: 'AI Customer Support on WhatsApp | Nam Nilam',
     description:
-      'Provide instant, accurate client support for passport appointments, embassy attestation, and travel updates.',
+      'Provide instant, helpful customer support on WhatsApp. Answer common questions, share product details, and hand over to humans when needed.',
     canonical: `${SITE_URL}/whatsapp-ai-for-customer-support`,
-    h1: '24/7 Client Support on WhatsApp',
+    h1: 'AI Customer Support on WhatsApp',
   },
   '/faq': {
-    title: 'FAQ | VYJOY WhatsApp AI',
+    title: 'WhatsApp AI FAQ | Nam Nilam',
     description:
-      'Frequently asked questions about linking WhatsApp, anti-ban broadcasts, and AI consultancy training.',
+      'Get answers to common questions about connecting your WhatsApp, teaching the AI, lead follow-ups, 24/7 availability, and human handover.',
     canonical: `${SITE_URL}/faq`,
-    h1: 'Frequently Asked Questions',
+    h1: 'Frequently Asked Questions About WhatsApp AI',
   },
   '/about': {
-    title: 'About VYJOY International Tourism & Consultancy',
+    title: 'About Nam Nilam | WhatsApp AI for Businesses',
     description:
-      'Premier consultancy in Trichy, Tamil Nadu specializing in overseas jobs, tourist visas, tour packages, and passport attestation.',
+      'Learn about Nam Nilam and our mission to make customer communication simpler, faster, and more reliable using WhatsApp AI.',
     canonical: `${SITE_URL}/about`,
-    h1: 'VYJOY International Tourism & Consultancy',
+    h1: 'Making Business Conversations Simpler',
   },
   '/contact': {
-    title: 'Contact VYJOY Consultancy | Trichy, Tamil Nadu',
+    title: 'Contact Nam Nilam | WhatsApp AI',
     description:
-      'Get in touch with VYJOY Consultancy in Trichy or chat directly on WhatsApp for visa, recruitment, and tour package guidance.',
+      'Get in touch with Nam Nilam or chat directly with our AI on WhatsApp (+91 97876 00221) to experience automated customer conversations.',
     canonical: `${SITE_URL}/contact`,
-    h1: 'Contact VYJOY Consultancy',
+    h1: 'Talk to Nam Nilam',
   },
 };

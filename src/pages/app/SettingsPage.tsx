@@ -25,7 +25,7 @@ export const SettingsPage: React.FC = () => {
     addToast,
   } = useWorkspace();
 
-  const [businessName, setBusinessName] = useState(workspace?.name || 'VYJOY AI');
+  const [businessName, setBusinessName] = useState(workspace?.name || 'Nam Nilam');
   const [location, setLocation] = useState(workspace?.location || 'Tamil Nadu, India');
 
   // AI settings
@@ -61,7 +61,7 @@ export const SettingsPage: React.FC = () => {
   return (
     <>
       <SEOHead
-        title="Settings | VYJOY AI Workspace"
+        title="Settings | Nam Nilam AI Workspace"
         description="Manage workspace preferences, WhatsApp connection, AI response rules, and team settings."
         canonicalUrl="https://wa.namnilam.com/app/settings"
       />

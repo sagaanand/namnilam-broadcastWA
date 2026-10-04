@@ -32,7 +32,7 @@ export const ContactPage: React.FC = () => {
           </div>
 
           <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
-            Talk to VYJOY AI
+            Talk to Nam Nilam
           </h1>
 
           <div className="bg-white rounded-3xl p-6 sm:p-8 border border-palegreen-200/90 shadow-card text-left space-y-3">
@@ -59,7 +59,7 @@ export const ContactPage: React.FC = () => {
                 Official WhatsApp
               </h2>
               <p className="text-xs text-slate-600 leading-relaxed">
-                Connect directly with VYJOY AI on WhatsApp. Experience automated replies and lead qualification in seconds.
+                Connect directly with Nam Nilam AI on WhatsApp. Experience automated replies and lead qualification in seconds.
               </p>
             </div>
 
@@ -83,10 +83,10 @@ export const ContactPage: React.FC = () => {
                 className="w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-namnilam-900 hover:bg-namnilam-950 text-white font-bold text-sm shadow-md transition active:scale-98"
               >
                 <Sparkles className="w-4 h-4 text-gold-300" />
-                <span>Chat with VYJOY AI</span>
+                <span>Chat with Nam Nilam AI</span>
               </a>
               <p className="text-[11px] text-slate-500 text-center">
-                Pre-fills: "Hi VYJOY AI, I want to know more about WhatsApp AI."
+                Pre-fills: "Hi Nam Nilam AI, I want to know more about WhatsApp AI."
               </p>
             </div>
           </div>

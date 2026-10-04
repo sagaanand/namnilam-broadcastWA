@@ -44,7 +44,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
 
     // If on private app route, ensure noindex, nofollow
     if (currentPath.startsWith('/app')) {
-      document.title = title.includes('VYJOY AI') ? title : `${title} | VYJOY AI Workspace`;
+      document.title = title.includes('Nam Nilam') ? title : `${title} | Nam Nilam Workspace`;
       setMetaTag('name', 'robots', 'noindex, nofollow');
       return;
     }
@@ -72,7 +72,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
     setMetaTag('property', 'og:url', canonicalUrl);
     setMetaTag('property', 'og:image', ogImageUrl);
     setMetaTag('property', 'og:type', 'website');
-    setMetaTag('property', 'og:site_name', 'VYJOY AI');
+    setMetaTag('property', 'og:site_name', 'Nam Nilam WhatsApp AI');
 
     // Twitter Card
     setMetaTag('name', 'twitter:card', 'summary_large_image');
@@ -101,7 +101,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
         isPartOf: {
           '@type': 'WebSite',
           '@id': `${SITE_URL}/#website`,
-          name: 'VYJOY AI',
+          name: 'Nam Nilam WhatsApp AI',
           url: SITE_URL,
         },
       },

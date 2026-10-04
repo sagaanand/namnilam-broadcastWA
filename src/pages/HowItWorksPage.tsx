@@ -24,7 +24,7 @@ export const HowItWorksPage: React.FC = () => {
 
           <div className="bg-white rounded-3xl p-6 sm:p-8 border border-palegreen-200/90 shadow-card text-left space-y-3">
             <p className="text-lg sm:text-xl text-slate-800 leading-relaxed font-medium">
-              VYJOY AI works by pairing your WhatsApp number with a tailored AI assistant that references your business facts, responds to customer questions, and alerts you whenever personal intervention is helpful.
+              Nam Nilam WhatsApp AI works by pairing your WhatsApp number with a tailored AI assistant that references your business facts, responds to customer questions, and alerts you whenever personal intervention is helpful.
             </p>
             <p className="text-base text-slate-600 leading-relaxed">
               There are no complex servers, APIs, or developer codes required. The entire setup is organized into 4 simple steps.
@@ -135,11 +135,13 @@ export const HowItWorksPage: React.FC = () => {
             {/* Header */}
             <div className="bg-[#075E54] text-white rounded-2xl px-4 py-3 flex items-center justify-between shadow-xs">
               <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-sky-500 to-blue-700 flex items-center justify-center shrink-0">
-                  <span className="text-white font-black text-xs">VJ</span>
-                </div>
+                <img
+                  src="/nam-nilam-logo.png"
+                  alt="Nam Nilam"
+                  className="w-8 h-8 rounded-full bg-white p-0.5 object-contain"
+                />
                 <div>
-                  <div className="text-xs font-bold">VYJOY AI</div>
+                  <div className="text-xs font-bold">Nam Nilam AI</div>
                   <div className="text-[10px] text-emerald-100">+91 97876 00221 • Online</div>
                 </div>
               </div>
@@ -219,7 +221,7 @@ export const HowItWorksPage: React.FC = () => {
               className="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl bg-namnilam-900 hover:bg-namnilam-950 text-white font-bold text-base shadow-md hover:shadow-lg ring-1 ring-gold-400/50 hover:ring-gold-400 transition-all active:scale-95 group"
             >
               <Sparkles className="w-5 h-5 text-gold-300 group-hover:rotate-12 transition-transform" />
-              <span>Chat with VYJOY AI →</span>
+              <span>Chat with Nam Nilam AI →</span>
             </a>
           </div>
         </div>

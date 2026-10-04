@@ -104,7 +104,7 @@ export const ContactsPage: React.FC = () => {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `vyjoy_ai_contacts_${Date.now()}.csv`;
+    a.download = `nam_nilam_contacts_${Date.now()}.csv`;
     a.click();
     addToast('success', 'Contacts exported to CSV successfully.');
   };
@@ -125,7 +125,7 @@ export const ContactsPage: React.FC = () => {
   return (
     <>
       <SEOHead
-        title="Contacts & CRM | VYJOY AI Workspace"
+        title="Contacts & CRM | Nam Nilam AI Workspace"
         description="View and manage all customer leads captured through WhatsApp."
         canonicalUrl="https://wa.namnilam.com/app/contacts"
       />

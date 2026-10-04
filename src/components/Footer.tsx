@@ -12,21 +12,26 @@ export const Footer: React.FC = () => {
           {/* Brand Column */}
           <div className="space-y-4">
             <Link to="/" className="flex items-center gap-3 group">
-              <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-sky-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-sky-500/20 group-hover:scale-105 transition-transform font-black text-sm tracking-wider">
-                VJ
-              </div>
+              <img
+                src="/nam-nilam-logo.png"
+                alt="Nam Nilam official logo"
+                className="w-10 h-10 object-contain rounded-full bg-white p-0.5 ring-2 ring-gold-400/60"
+                width="40"
+                height="40"
+                loading="lazy"
+              />
               <div>
                 <span className="font-extrabold text-white text-lg block tracking-tight">
-                  VYJOY Consultancy
+                  Nam Nilam
                 </span>
-                <span className="text-xs text-sky-400 font-semibold block">
-                  International Tourism & Recruitment
+                <span className="text-xs text-gold-300 font-semibold block">
+                  WhatsApp AI for Businesses
                 </span>
               </div>
             </Link>
 
             <p className="text-sm text-slate-400 max-w-sm leading-relaxed">
-              Automate overseas job inquiries, visa consultations, and anti-ban WhatsApp broadcasts with AI.
+              Connect your WhatsApp with AI and let it handle customer conversations for you.
             </p>
 
             {/* Direct WhatsApp Callout */}
@@ -35,11 +40,11 @@ export const Footer: React.FC = () => {
                 href={WHATSAPP_CHAT_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-sky-800 hover:bg-sky-700 text-white text-xs font-bold ring-1 ring-sky-400/50 hover:ring-sky-400 transition-all active:scale-95 group"
-                aria-label="Chat with VYJOY AI on WhatsApp"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-namnilam-800 hover:bg-namnilam-700 text-white text-xs font-bold ring-1 ring-gold-400/50 hover:ring-gold-400 transition-all active:scale-95 group"
+                aria-label="Chat with Nam Nilam AI on WhatsApp (+91 97876 00221)"
               >
-                <Sparkles className="w-3.5 h-3.5 text-sky-300 group-hover:rotate-12 transition-transform" />
-                <span>Chat with VYJOY AI</span>
+                <Sparkles className="w-3.5 h-3.5 text-gold-300 group-hover:rotate-12 transition-transform" />
+                <span>Chat with Nam Nilam AI</span>
               </a>
             </div>
           </div>
@@ -206,10 +211,10 @@ export const Footer: React.FC = () => {
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
           <div>
-            © 2026 VYJOY International Tourism & Consultancy (Trichy). All rights reserved.
+            © 2026 Nam Nilam. All rights reserved.
           </div>
           <div className="text-slate-500 text-center sm:text-right">
-            VYJOY WhatsApp AI • Overseas Jobs, Visas, Tour Packages & Safe Anti-Ban Broadcasts.
+            Nam Nilam WhatsApp AI • Simple setup. Human control. AI-powered conversations.
           </div>
         </div>
       </div>

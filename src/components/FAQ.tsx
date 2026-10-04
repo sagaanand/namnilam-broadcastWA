@@ -24,7 +24,7 @@ export const FAQ: React.FC = () => {
             Frequently Asked Questions
           </h2>
           <p className="text-base sm:text-lg text-slate-700 leading-relaxed">
-            Everything you need to know about VYJOY AI and automated customer communication.
+            Everything you need to know about Nam Nilam WhatsApp AI and automated customer communication.
           </p>
         </div>
 

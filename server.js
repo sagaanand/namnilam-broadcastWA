@@ -66,8 +66,8 @@ let activeBroadcast = null;
 
 let aiSettings = loadJson(AI_SETTINGS_FILE, {
   enabled: false,
-  businessName: 'VYJOY International Tourism & Consultancy',
-  instructions: '',
+  businessName: 'Nam Nilam Realty',
+  instructions: 'Politely answer questions about project details, plot availability, and pricing starting from ₹18.5 Lakhs. Offer free weekend site visits.',
 });
 aiSettings.enabled = false;
 
@@ -106,7 +106,7 @@ const formatPhoneNumber = (jid) => {
 // Generate AI response based on message text and business knowledge
 const generateAiResponse = (text) => {
   const lower = (text || '').toLowerCase().trim();
-  const biz = aiSettings.businessName || 'VYJOY Consultancy';
+  const biz = aiSettings.businessName || 'Nam Nilam Realty';
 
   // 1. Check trained FAQs in knowledge base
   if (Array.isArray(aiSettings.faqs) && aiSettings.faqs.length > 0) {
@@ -130,112 +130,86 @@ const generateAiResponse = (text) => {
       const matches = lower.includes(pNameLower) || pWords.some((w) => lower.includes(w));
       if (matches) {
         let reply = `Here are the details for ${prod.name}:`;
-        if (prod.price) reply += `\n• Pricing/Charges: ${prod.price}`;
-        if (prod.availability) reply += `\n• Status: ${prod.availability}`;
+        if (prod.price) reply += `\n• Price: ${prod.price}`;
+        if (prod.specs) reply += `\n• Specs: ${prod.specs}`;
+        if (prod.location) reply += `\n• Location: ${prod.location}`;
         if (prod.description) reply += `\n• Details: ${prod.description}`;
-        reply += `\n\nWould you like to speak with our Trichy consultant or send your documents for assessment?`;
+        reply += `\n\nWould you like to schedule a free site visit or receive the layout map on WhatsApp?`;
         return reply;
       }
     }
   }
 
-  // 3. Domain pattern matching: Overseas Job Vacancies & Recruitment
+  // 3. Domain pattern matching: Project details & Plots
   if (
-    lower.includes('job') ||
-    lower.includes('recruitment') ||
-    lower.includes('vacancy') ||
-    lower.includes('vacancies') ||
-    lower.includes('velai') ||
-    lower.includes('work') ||
-    lower.includes('abroad') ||
-    lower.includes('gulf') ||
-    lower.includes('singapore') ||
-    lower.includes('malaysia') ||
-    lower.includes('dubai job') ||
-    lower.includes('salary') ||
-    lower.includes('interview') ||
-    lower.includes('candidate')
+    lower.includes('project') ||
+    lower.includes('details') ||
+    lower.includes('venum') ||
+    lower.includes('detail') ||
+    lower.includes('plot') ||
+    lower.includes('land') ||
+    lower.includes('layout') ||
+    lower.includes('nilam')
   ) {
-    return `Vanakkam! At ${biz} (Trichy), we actively recruit qualified candidates for Gulf countries (UAE, Saudi, Qatar, Kuwait, Oman), Singapore, Malaysia, and Europe.\n\nTo check active vacancies and eligibility:\n1. Send your updated Resume/CV\n2. Share your Passport copy (front & back)\n3. Any trade/experience certificates\n\nOur recruitment team will review your profile immediately. Would you like to send your CV here?`;
+    return `Nam Nilam offers premium DTCP & RERA approved residential plots in Abirami Nagar starting from ₹18.5 Lakhs. Plots range from 1,200 to 2,400 sq.ft with 40ft blacktop roads, 24/7 security, and clear titles.\n\nWould you like us to share the project brochure and layout map on WhatsApp?`;
   }
 
-  // 4. Domain pattern matching: Tourist & Visit Visas
-  if (
-    lower.includes('visa') ||
-    lower.includes('tourist') ||
-    lower.includes('visit') ||
-    lower.includes('schengen') ||
-    lower.includes('stamping') ||
-    lower.includes('transit')
-  ) {
-    return `We provide fast-track tourist and visit visa processing for Dubai (30/60 days), Singapore, Malaysia, Thailand, Bali, UK, USA, Australia, and Schengen Europe countries.\n\nWe assist with complete documentation, application submission, and appointment booking with high success rates. Which country are you planning to visit?`;
-  }
-
-  // 5. Domain pattern matching: Tour Packages & Holidays
-  if (
-    lower.includes('tour') ||
-    lower.includes('package') ||
-    lower.includes('trip') ||
-    lower.includes('travel') ||
-    lower.includes('holiday') ||
-    lower.includes('flight') ||
-    lower.includes('sightseeing')
-  ) {
-    return `Yes! We offer customized international tour packages for Dubai, Thailand, Singapore, Malaysia, Bali, and Europe, as well as domestic tours (Kashmir, Kerala, Goa).\n\nOur packages include return flights, star hotel accommodation, airport transfers, daily breakfast, and guided sightseeing. How many persons are traveling and what is your preferred travel month?`;
-  }
-
-  // 6. Domain pattern matching: Passport & Certificate Attestation
-  if (
-    lower.includes('passport') ||
-    lower.includes('tatkal') ||
-    lower.includes('renewal') ||
-    lower.includes('attestation') ||
-    lower.includes('apostille') ||
-    lower.includes('mea') ||
-    lower.includes('embassy') ||
-    lower.includes('certificate') ||
-    lower.includes('notary')
-  ) {
-    return `We assist with fresh passport appointments, Tatkal passport, renewal, and MEA / Apostille / Embassy certificate attestation (UAE, Qatar, Kuwait, Saudi) for degree, marriage, and birth certificates.\n\nWould you like the list of required documents for attestation or passport booking?`;
-  }
-
-  // 7. Domain pattern matching: Office Location & Consultations (Trichy)
-  if (
-    lower.includes('office') ||
-    lower.includes('location') ||
-    lower.includes('address') ||
-    lower.includes('trichy') ||
-    lower.includes('meet') ||
-    lower.includes('timing') ||
-    lower.includes('direct')
-  ) {
-    const addr = aiSettings.officeAddress || 'VyJoy Tower, Cantonment / Thillai Nagar, Trichy, Tamil Nadu - 620001';
-    return `Our main office is located at:\n📍 ${addr}\n\nWorking Hours: Monday to Saturday, 9:30 AM to 7:00 PM IST.\nYou are welcome to visit our office directly or schedule an appointment with our consultant.`;
-  }
-
-  // 8. Domain pattern matching: Pricing & Fees
+  // 5. Domain pattern matching: Pricing & Cost
   if (
     lower.includes('price') ||
     lower.includes('cost') ||
     lower.includes('rate') ||
-    lower.includes('fee') ||
-    lower.includes('charges') ||
+    lower.includes('budget') ||
     lower.includes('vilai')
   ) {
-    return `Our visa processing fees start from ₹5,500 (depending on country), and tour packages start from ₹28,000 per person. Overseas recruitment profile assessments are free of charge.\n\nWhich service or country package would you like the detailed breakdown for?`;
+    return `Our plots start from ₹18.5 Lakhs (approx ₹1,540 / sq.ft). DTCP and RERA approvals are clear, and bank loans are arranged. Would you like the complete price details?`;
+  }
+
+  // 6. Domain pattern matching: Site visits & Location
+  if (
+    lower.includes('visit') ||
+    lower.includes('site') ||
+    lower.includes('location') ||
+    lower.includes('saturday') ||
+    lower.includes('sunday') ||
+    lower.includes('paaka')
+  ) {
+    return `Yes! We arrange free weekend site visits with complimentary cab pickup. Would Saturday or Sunday morning work better for you?`;
+  }
+
+  // 7. Domain pattern matching: Bank Loans & EMI
+  if (
+    lower.includes('loan') ||
+    lower.includes('bank') ||
+    lower.includes('emi') ||
+    lower.includes('interest')
+  ) {
+    return `Up to 80% bank loan approval is ready with SBI, HDFC, and Indian Bank. Our team assists with all paperwork free of charge.`;
+  }
+
+  // 8. Domain pattern matching: Office Location & Consultations
+  if (
+    lower.includes('office') ||
+    lower.includes('address') ||
+    lower.includes('chennai') ||
+    lower.includes('meet') ||
+    lower.includes('timing')
+  ) {
+    const addr = aiSettings.officeAddress || 'No. 45, Anna Salai, Guindy, Chennai, Tamil Nadu - 600032';
+    return `Our office is located at:\n📍 ${addr}\n\nWorking Hours: Monday to Saturday, 9:30 AM to 7:00 PM IST.\nYou are welcome to visit our office or schedule a site visit with our team.`;
   }
 
   // 9. Greetings (Tamil / English / Tanglish)
   if (lower.includes('hi') || lower.includes('hello') || lower.includes('vanakkam') || lower.includes('hey') || lower.includes('namaste')) {
-    return `Vanakkam! Welcome to ${biz} (Trichy).\n\nHow can we assist you today?\n1. ✈️ Tourist & Visit Visas\n2. 💼 Overseas Job Recruitment\n3. 🏖️ International Tour Packages\n4. 🛂 Passport & Document Attestation\n\nPlease let us know what you are looking for!`;
+    return `Vanakkam! Thank you for contacting ${biz}.\n\nHow can I assist you today with our DTCP & RERA approved properties and residential plots?`;
   }
 
   // 10. General fallback using business knowledge instructions
   if (aiSettings.instructions && aiSettings.instructions.length > 10) {
-    return `Thank you for contacting ${biz}! We are your trusted partner in Trichy for overseas jobs, visas, tour packages, and passport services. Please let us know your query and our team will guide you right away.`;
+    return `Thank you for contacting ${biz}! I can help you with project brochures, available plots, pricing, and scheduling free site visits. What information are you looking for?`;
   }
 
-  return `Thank you for contacting ${biz}! How can we assist you today with our consultancy and travel services?`;
+  return `Thank you for contacting ${biz}! How can I help you regarding our property and projects today?`;
 };
 
 // -----------------------------------------------------------------
@@ -247,7 +221,7 @@ function formatBroadcastMessage(template, recipient, businessName) {
   let text = template || '';
   const nameVal = recipient.name && recipient.name.trim() ? recipient.name.trim() : 'Friend';
   const phoneVal = recipient.phone || '';
-  const bizVal = businessName || 'VYJOY Consultancy';
+  const bizVal = businessName || 'Nam Nilam Realty';
 
   // Replace variables
   text = text.replace(/\{\{\s*name\s*\}\}|\{name\}/gi, nameVal);
@@ -594,7 +568,7 @@ async function startWhatsAppSocket() {
         currentQrImage = null;
         connectedUser = {
           id: sock.user?.id ? formatPhoneNumber(sock.user.id) : '',
-          name: sock.user?.name || 'VYJOY Broadcast',
+          name: sock.user?.name || 'Nam Nilam Broadcast',
         };
       }
     });
@@ -1041,6 +1015,6 @@ app.post('/api/broadcasts/:id/cancel', (req, res) => {
 
 // Start Express Server and WhatsApp socket
 app.listen(PORT, () => {
-  console.log(`[Server] VYJOY WhatsApp Bridge listening on http://localhost:${PORT}`);
+  console.log(`[Server] Nam Nilam WhatsApp Bridge listening on http://localhost:${PORT}`);
   startWhatsAppSocket();
 });

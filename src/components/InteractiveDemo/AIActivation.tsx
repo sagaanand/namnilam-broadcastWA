@@ -47,7 +47,7 @@ export const AIActivation: React.FC<AIActivationProps> = ({ onViewInbox }) => {
               Setting up your AI assistant...
             </h3>
             <p className="text-xs sm:text-sm text-slate-500">
-              Embedding VYJOY AI real estate information and Tanglish dialogue models.
+              Embedding Nam Nilam real estate information and Tanglish dialogue models.
             </p>
           </div>
 

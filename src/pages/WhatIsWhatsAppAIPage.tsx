@@ -28,7 +28,7 @@ export const WhatIsWhatsAppAIPage: React.FC = () => {
               <strong className="text-namnilam-950 font-bold">WhatsApp AI</strong> is an AI assistant that can help a business communicate with customers through WhatsApp. Instead of answering every message manually, businesses can use AI to answer common questions, share information, collect customer details and follow up with enquiries.
             </p>
             <p className="text-base text-slate-600 leading-relaxed">
-              VYJOY AI connects directly to your existing WhatsApp number, functioning like a round-the-clock team member that knows your business details, handles incoming chats, and lets you take over whenever human attention is needed.
+              Nam Nilam WhatsApp AI connects directly to your existing WhatsApp number, functioning like a round-the-clock team member that knows your business details, handles incoming chats, and lets you take over whenever human attention is needed.
             </p>
           </div>
         </div>
@@ -93,7 +93,7 @@ export const WhatIsWhatsAppAIPage: React.FC = () => {
               What Can WhatsApp AI Do?
             </h2>
             <p className="text-slate-600 text-base">
-              Key everyday communication tasks VYJOY AI handles for your business.
+              Key everyday communication tasks Nam Nilam WhatsApp AI handles for your business.
             </p>
           </div>
 
@@ -185,7 +185,7 @@ export const WhatIsWhatsAppAIPage: React.FC = () => {
               <div className="flex items-center justify-between border-b border-palegreen-100 pb-3">
                 <span className="font-bold text-namnilam-950 text-sm uppercase tracking-wider flex items-center gap-1.5">
                   <Sparkles className="w-4 h-4 text-gold-600" />
-                  VYJOY AI
+                  Nam Nilam WhatsApp AI
                 </span>
                 <span className="text-xs px-2.5 py-0.5 rounded-full bg-palegreen-100 text-namnilam-900 font-bold">
                   AI + Human Control
@@ -233,7 +233,7 @@ export const WhatIsWhatsAppAIPage: React.FC = () => {
               className="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl bg-namnilam-900 hover:bg-namnilam-950 text-white font-bold text-base shadow-md hover:shadow-lg ring-1 ring-gold-400/50 hover:ring-gold-400 transition-all active:scale-95 group"
             >
               <Sparkles className="w-5 h-5 text-gold-300 group-hover:rotate-12 transition-transform" />
-              <span>Chat with VYJOY AI →</span>
+              <span>Chat with Nam Nilam AI →</span>
             </a>
           </div>
         </div>

@@ -41,34 +41,23 @@ export const BroadcastsPage: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const [campaignName, setCampaignName] = useState('');
   const [templateText, setTemplateText] = useState(
-    `🇸🇬 🔥 SINGAPORE JOB OPPORTUNITY 🔥 🇸🇬
+    `🏡 ✨ NAM NILAM PROPERTIES - EXCLUSIVE PLOT LAUNCH ✨ 🏡
 
-💼 POSITION: WAREHOUSE GENERAL WORKER
+📍 LOCATION: ABIRAMI NAGAR, NEAR NH HIGHWAY
+📐 PLOT SIZES: 1200 - 2400 SQ.FT
+📜 APPROVAL: 100% DTCP & RERA APPROVED
 
-💰 SALARY: S$2,000 / MONTH
+💰 PRICE: Starting from just ₹18.5 Lakhs (₹1,540 / sq.ft)
+🏦 BANK LOAN: Up to 80% pre-approved (SBI, HDFC, Indian Bank)
 
-⏰ WORKING HOURS: 10.5 HOURS / DAY
+🌟 HIGHLIGHTS:
+✅ 40ft & 30ft Blacktop Roads
+✅ 24/7 Gated Security & LED Street Lights
+✅ Clear Title & Immediate Registration
+✅ Free Cab Pickup for Saturday & Sunday Site Visits
 
-📅 MONTHLY LEAVE: 2 DAYS
-
-🛏️ ACCOMMODATION: Employee's own responsibility
-🍱 FOOD: Employee's own responsibility
-💵 INCOME TAX: Employee's own responsibility
-
-👤 ELIGIBILITY:
-✅ Fresh candidates to Singapore
-✅ Age: Born between 1987–1998
-✅ Degree Holder
-✅ RMI / Without RMI – Both accepted
-
-🚨 IMMEDIATE HIRING 🚨
-
-💰 PROCESSING FEE: ₹6.50 LAKHS
-✈️ AIR TICKET: NOT INCLUDED
-
-📞 CONTACT NOW: 8220874118
-
-👉 Interested candidates, contact us for complete details.`
+📞 CONTACT US: +91 97876 00221
+👉 Reply 'VISIT' to schedule your free weekend site visit!`
   );
   const [recipientTab, setRecipientTab] = useState<'paste' | 'csv' | 'crm'>('paste');
 
@@ -445,7 +434,7 @@ export const BroadcastsPage: React.FC = () => {
     let text = templateText;
     text = text.replace(/\{\{\s*name\s*\}\}|\{name\}/gi, 'Ramesh');
     text = text.replace(/\{\{\s*phone\s*\}\}|\{phone\}/gi, '+91 98424 12345');
-    text = text.replace(/\{\{\s*company\s*\}\}|\{company\}|\{\{\s*business\s*\}\}|\{business\}/gi, 'VYJOY Consultancy');
+    text = text.replace(/\{\{\s*company\s*\}\}|\{company\}|\{\{\s*business\s*\}\}|\{business\}/gi, 'Nam Nilam Realty');
 
     // Resolve spintax
     text = text.replace(/\{([^{}]+)\|([^{}]+)\}/g, (match) => {
@@ -471,7 +460,7 @@ export const BroadcastsPage: React.FC = () => {
 
 
     const ok = await startRealBroadcast({
-      name: campaignName.trim() || `VYJOY Campaign ${new Date().toLocaleDateString()}`,
+      name: campaignName.trim() || `Nam Nilam Campaign ${new Date().toLocaleDateString()}`,
       template: templateText.trim(),
       recipients: finalRecipients,
       delaySecondsMin: delayMin,
@@ -493,9 +482,9 @@ export const BroadcastsPage: React.FC = () => {
   return (
     <>
       <SEOHead
-        title="Safe WhatsApp Broadcast Bot | VYJOY Consultancy"
+        title="Safe WhatsApp Broadcast Bot | Nam Nilam"
         description="Send separate, anti-ban WhatsApp messages individually to client lists with humanized typing simulation and jitter pacing."
-        canonicalUrl="https://vyjoyconsultancy.com/app/broadcasts"
+        canonicalUrl="https://wa.namnilam.com/app/broadcasts"
       />
 
       <div className="h-full flex flex-col bg-[#F8FAFC] p-4 sm:p-6 lg:p-8 overflow-y-auto">
@@ -878,7 +867,7 @@ export const BroadcastsPage: React.FC = () => {
                     defaultValue=""
                     className="w-full px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700"
                   >
-                    <option value="" disabled>-- Pick from existing VYJOY templates --</option>
+                    <option value="" disabled>-- Pick from existing Nam Nilam templates --</option>
                     {templates.map((t) => (
                       <option key={t.id} value={t.id}>
                         {t.name} ({t.category})

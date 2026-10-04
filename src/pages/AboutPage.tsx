@@ -24,7 +24,7 @@ export const AboutPage: React.FC = () => {
 
           <div className="bg-white rounded-3xl p-6 sm:p-8 border border-palegreen-200/90 shadow-card text-left space-y-3">
             <p className="text-lg sm:text-xl text-slate-800 leading-relaxed font-medium">
-              VYJOY AI was created with a straightforward purpose: to help businesses communicate with their customers more easily, quickly, and reliably on WhatsApp.
+              Nam Nilam was created with a straightforward purpose: to help businesses communicate with their customers more easily, quickly, and reliably on WhatsApp.
             </p>
             <p className="text-base text-slate-600 leading-relaxed">
               Every day, thousands of businesses receive WhatsApp messages from interested buyers. When business owners are busy, in meetings, or off duty, those messages go unanswered for hours. We build AI that takes the friction out of business conversations while keeping you firmly in control.
@@ -39,7 +39,7 @@ export const AboutPage: React.FC = () => {
               What We Believe In
             </h2>
             <p className="text-slate-600 text-base">
-              The principles behind VYJOY AI.
+              The principles behind Nam Nilam WhatsApp AI.
             </p>
           </div>
 
@@ -104,7 +104,7 @@ export const AboutPage: React.FC = () => {
             <span>Connect with Us</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
-            Talk to VYJOY AI on WhatsApp
+            Talk to Nam Nilam AI on WhatsApp
           </h2>
           <p className="text-slate-600 text-sm sm:text-base max-w-lg mx-auto">
             Experience our conversational assistant firsthand at {WHATSAPP_NUMBER} and see how it works.
@@ -117,7 +117,7 @@ export const AboutPage: React.FC = () => {
               className="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl bg-namnilam-900 hover:bg-namnilam-950 text-white font-bold text-base shadow-md hover:shadow-lg ring-1 ring-gold-400/50 hover:ring-gold-400 transition-all active:scale-95 group"
             >
               <Sparkles className="w-5 h-5 text-gold-300 group-hover:rotate-12 transition-transform" />
-              <span>Chat with VYJOY AI →</span>
+              <span>Chat with Nam Nilam AI →</span>
             </a>
           </div>
         </div>

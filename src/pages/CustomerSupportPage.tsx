@@ -124,7 +124,7 @@ export const CustomerSupportPage: React.FC = () => {
             Provide instant support to every customer
           </h2>
           <p className="text-slate-600 text-sm sm:text-base max-w-lg mx-auto">
-            Try a live conversation with VYJOY AI on WhatsApp ({WHATSAPP_NUMBER}) and see how smoothly it resolves customer questions.
+            Try a live conversation with Nam Nilam AI on WhatsApp ({WHATSAPP_NUMBER}) and see how smoothly it resolves customer questions.
           </p>
           <div className="pt-2">
             <a
@@ -134,7 +134,7 @@ export const CustomerSupportPage: React.FC = () => {
               className="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl bg-namnilam-900 hover:bg-namnilam-950 text-white font-bold text-base shadow-md hover:shadow-lg ring-1 ring-gold-400/50 hover:ring-gold-400 transition-all active:scale-95 group"
             >
               <Sparkles className="w-5 h-5 text-gold-300 group-hover:rotate-12 transition-transform" />
-              <span>Chat with VYJOY AI →</span>
+              <span>Chat with Nam Nilam AI →</span>
             </a>
           </div>
         </div>
@@ -145,7 +145,7 @@ export const CustomerSupportPage: React.FC = () => {
             See the Complete WhatsApp AI FAQ →
           </Link>
           <Link to="/about" className="hover:text-namnilam-900 font-semibold transition">
-            About VYJOY AI →
+            About Nam Nilam →
           </Link>
         </div>
 

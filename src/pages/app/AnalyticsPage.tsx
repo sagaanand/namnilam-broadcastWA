@@ -28,7 +28,7 @@ export const AnalyticsPage: React.FC = () => {
   return (
     <>
       <SEOHead
-        title="Analytics | VYJOY AI Workspace"
+        title="Analytics | Nam Nilam AI Workspace"
         description="Monitor WhatsApp conversation volume, AI resolution rate, and lead qualification metrics."
         canonicalUrl="https://wa.namnilam.com/app/analytics"
       />

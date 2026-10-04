@@ -10,7 +10,7 @@ interface AISetupCardProps {
 
 export const AISetupCard: React.FC<AISetupCardProps> = ({ onActivate }) => {
   const [settings, setSettings] = useState<AISettings>({
-    businessName: 'VYJOY AI',
+    businessName: 'Nam Nilam',
     businessType: 'Real Estate',
     location: 'Tamil Nadu',
     personality: 'Professional',

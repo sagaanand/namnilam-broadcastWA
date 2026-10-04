@@ -39,7 +39,7 @@ export const WhoIsItFor: React.FC = () => {
             Built for Businesses That Get Customers on WhatsApp
           </h2>
           <p className="text-base sm:text-lg text-slate-700">
-            If WhatsApp is where your clients discover you, VYJOY AI ensures they never drop off.
+            If WhatsApp is where your clients discover you, Nam Nilam WhatsApp AI ensures they never drop off.
           </p>
         </div>
 

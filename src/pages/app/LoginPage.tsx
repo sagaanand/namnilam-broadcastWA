@@ -48,8 +48,8 @@ export const LoginPage: React.FC = () => {
   return (
     <>
       <SEOHead
-        title="Sign In | VYJOY AI"
-        description="Sign in to your VYJOY AI Workspace to manage WhatsApp chats, contacts, and AI responses."
+        title="Sign In | Nam Nilam WhatsApp AI"
+        description="Sign in to your Nam Nilam AI Workspace to manage WhatsApp chats, contacts, and AI responses."
         canonicalUrl="https://wa.namnilam.com/app/login"
       />
 
@@ -66,15 +66,19 @@ export const LoginPage: React.FC = () => {
 
         {/* Brand Header */}
         <div className="sm:mx-auto sm:w-full sm:max-w-md px-4 text-center">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-sky-500 to-blue-700 text-white font-black text-2xl shadow-lg shadow-sky-500/30 mb-1">
-              VJ
-            </div>
+          <div className="inline-flex items-center justify-center gap-2 mb-3">
+            <img
+              src="/nam-nilam-logo.png"
+              alt="Nam Nilam Logo"
+              className="w-12 h-12 rounded-full ring-2 ring-gold-400/60 p-0.5 bg-white shadow-sm"
+            />
+          </div>
           <span className="inline-flex items-center gap-1 text-[11px] font-bold text-namnilam-900 uppercase tracking-widest bg-palegreen-200/80 px-3 py-0.5 rounded-full mb-2">
             <Sparkles className="w-3 h-3 text-gold-600" />
-            VYJOY AI Workspace
+            Nam Nilam Workspace
           </span>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-            Sign In to VYJOY AI
+            Sign In to Nam Nilam AI
           </h1>
           <p className="mt-2 text-xs sm:text-sm text-slate-600">
             Access your WhatsApp inbox, customer leads, and automated AI responses.
@@ -167,7 +171,7 @@ export const LoginPage: React.FC = () => {
             {/* Create Account Footer */}
             <div className="mt-6 pt-6 border-t border-slate-100 text-center">
               <p className="text-xs text-slate-600">
-                New to VYJOY AI?{' '}
+                New to Nam Nilam?{' '}
                 <Link
                   to="/app/signup"
                   className="font-bold text-namnilam-900 hover:text-namnilam-700 underline"

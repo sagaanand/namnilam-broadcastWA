@@ -110,7 +110,7 @@ export const FAQPage: React.FC = () => {
               className="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl bg-namnilam-900 hover:bg-namnilam-950 text-white font-bold text-base shadow-md hover:shadow-lg ring-1 ring-gold-400/50 hover:ring-gold-400 transition-all active:scale-95 group"
             >
               <Sparkles className="w-5 h-5 text-gold-300 group-hover:rotate-12 transition-transform" />
-              <span>Chat with VYJOY AI →</span>
+              <span>Chat with Nam Nilam AI →</span>
             </a>
           </div>
         </div>
@@ -118,7 +118,7 @@ export const FAQPage: React.FC = () => {
         {/* Bottom Internal Links */}
         <div className="pt-8 border-t border-palegreen-200/80 flex flex-wrap items-center justify-between gap-4 text-xs sm:text-sm text-slate-600">
           <Link to="/about" className="hover:text-namnilam-900 font-semibold transition">
-            Learn About VYJOY AI →
+            Learn About Nam Nilam →
           </Link>
           <Link to="/contact" className="hover:text-namnilam-900 font-semibold transition">
             Contact Our Team →

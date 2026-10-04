@@ -108,9 +108,9 @@ export const InboxPage: React.FC = () => {
   return (
     <>
       <SEOHead
-        title="WhatsApp Web | VYJOY Consultancy AI"
+        title="WhatsApp Web | Nam Nilam AI"
         description="Authentic Web WhatsApp interface with integrated AI Assistant auto-reply layer and anti-ban broadcast bot."
-        canonicalUrl="https://vyjoyconsultancy.com/app/inbox"
+        canonicalUrl="https://wa.namnilam.com/app/inbox"
       />
 
       <div className="h-screen w-screen overflow-hidden flex bg-[#EFEAE2] font-sans antialiased text-slate-800">
@@ -132,7 +132,7 @@ export const InboxPage: React.FC = () => {
               </div>
               <div className="hidden sm:block text-left">
                 <span className="font-extrabold text-xs text-slate-900 block truncate max-w-[140px]">
-                  {user?.businessName || 'VYJOY Consultancy'}
+                  {user?.businessName || 'Nam Nilam Realty'}
                 </span>
                 <span className="text-[10px] text-slate-500 font-mono block">
                   {whatsAppAccount.phoneNumber}
@@ -491,10 +491,12 @@ export const InboxPage: React.FC = () => {
             </>
           ) : (
             <div className="h-full flex flex-col items-center justify-center p-8 text-center text-slate-400">
-              <div className="w-16 h-16 rounded-3xl bg-gradient-to-tr from-sky-600 to-indigo-600 flex items-center justify-center text-white text-xl font-black mb-3 shadow-lg shadow-sky-500/25">
-                VJ
-              </div>
-              <h3 className="font-bold text-slate-800 text-lg">VYJOY WhatsApp Workspace</h3>
+              <img
+                src="/nam-nilam-logo.png"
+                alt="Nam Nilam"
+                className="w-16 h-16 rounded-full mb-3 opacity-90 shadow-md ring-2 ring-gold-400/50 p-0.5 bg-white"
+              />
+              <h3 className="font-bold text-slate-800 text-lg">Nam Nilam WhatsApp Workspace</h3>
               <p className="text-xs text-slate-500 max-w-sm mt-1">
                 {whatsAppAccount.status === 'connected'
                   ? 'Select a conversation on the left to review incoming queries, send replies, or open the Broadcast Bot.'
@@ -622,7 +624,7 @@ export const InboxPage: React.FC = () => {
                     type="text"
                     value={bizNameInput}
                     onChange={(e) => setBizNameInput(e.target.value)}
-                    placeholder="e.g. VYJOY International Tourism & Consultancy"
+                    placeholder="e.g. Nam Nilam Properties"
                     className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-1 focus:ring-emerald-600 outline-none"
                   />
                 </div>

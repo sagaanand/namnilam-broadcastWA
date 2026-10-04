@@ -170,7 +170,7 @@ export const ConnectModal: React.FC<ConnectModalProps> = ({ isOpen, onClose }) =
                     rel="noopener noreferrer"
                     className="w-full py-3.5 rounded-xl bg-namnilam-800 hover:bg-namnilam-900 text-white font-bold text-sm shadow-md transition flex items-center justify-center gap-2 active:scale-98"
                   >
-                    <span>Chat with VYJOY AI →</span>
+                    <span>Chat with Nam Nilam AI →</span>
                   </a>
 
                   <button
@@ -244,7 +244,7 @@ export const ConnectModal: React.FC<ConnectModalProps> = ({ isOpen, onClose }) =
                     rel="noopener noreferrer"
                     className="w-full py-3.5 rounded-xl bg-namnilam-800 hover:bg-namnilam-900 text-white font-bold text-sm shadow-md transition flex items-center justify-center gap-2"
                   >
-                    <span>Chat with VYJOY AI →</span>
+                    <span>Chat with Nam Nilam AI →</span>
                   </a>
 
                   <button

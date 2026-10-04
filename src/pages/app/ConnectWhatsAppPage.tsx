@@ -126,8 +126,8 @@ export const ConnectWhatsAppPage: React.FC = () => {
   return (
     <>
       <SEOHead
-        title="Connect WhatsApp | VYJOY AI"
-        description="Link your WhatsApp to VYJOY AI by scanning the QR code from Linked Devices."
+        title="Connect WhatsApp | Nam Nilam AI"
+        description="Link your WhatsApp to Nam Nilam AI by scanning the QR code from Linked Devices."
         canonicalUrl="https://wa.namnilam.com/app/connect"
       />
 
@@ -136,12 +136,16 @@ export const ConnectWhatsAppPage: React.FC = () => {
         {/* Authentic WhatsApp Web Top Green Strip */}
         <div className="bg-[#00a884] h-36 sm:h-48 w-full flex items-center px-6 sm:px-12 lg:px-24">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-sky-500 to-blue-700 flex items-center justify-center shadow-xs">
-              <span className="text-white font-black text-sm">VJ</span>
+            <div className="w-10 h-10 rounded-full bg-white ring-2 ring-white/50 p-0.5 flex items-center justify-center shadow-xs">
+              <img
+                src="/nam-nilam-logo.png"
+                alt="Nam Nilam"
+                className="w-8 h-8 rounded-full"
+              />
             </div>
             <div>
               <span className="font-extrabold text-white text-base sm:text-lg tracking-tight block">
-                VYJOY AI
+                Nam Nilam WhatsApp AI
               </span>
               <span className="text-[11px] text-white/80 font-medium">
                 Web WhatsApp + AI Assistant · {workspace?.name || 'My Business'}
@@ -191,7 +195,7 @@ export const ConnectWhatsAppPage: React.FC = () => {
                 <div className="lg:col-span-7 space-y-6 text-left">
                   <div>
                     <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-                      Use VYJOY AI on your computer
+                      Use Nam Nilam on your computer
                     </h1>
                     <p className="text-xs sm:text-sm text-slate-600 mt-1">
                       Scan this QR code from your WhatsApp mobile app to connect.
@@ -259,7 +263,7 @@ export const ConnectWhatsAppPage: React.FC = () => {
                           {/* Center Brand / WhatsApp Badge */}
                           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                             <div className="w-10 h-10 rounded-full bg-white ring-2 ring-[#00a884] p-0.5 shadow-md flex items-center justify-center">
-                              <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-br from-sky-500 to-blue-700 text-white font-black text-xs leading-none shrink-0">VJ</span>
+                              <img src="/nam-nilam-logo.png" alt="Logo" className="w-8 h-8 rounded-full" />
                             </div>
                           </div>
                         </div>
